@@ -1,23 +1,22 @@
 local M = {
   { "navarasu/onedark.nvim",
-      -- config = function ()
-      --   require('onedark').setup {
-      --       style = 'darker'
-      --   }
-      --   require('onedark').load()
-      -- end
+      config = function ()
+        require('onedark').setup {
+            style = 'darker'
+        }
+        require('onedark').load()
+      end
   },
+  -- { "lukas-reineke/onedark.nvim" },
   { "Shatur/neovim-ayu" },
   { "folke/tokyonight.nvim" },
   { "tiagovla/tokyodark.nvim" },
   { "ellisonleao/gruvbox.nvim" },
-  { "aktersnurra/no-clown-fiesta.nvim" },
   { "sainnhe/gruvbox-material" },
   { "sainnhe/everforest" },
-  { "lunacookies/vim-colors-xcode" },
-  { "marko-cerovac/material.nvim" },
   { "AlexvZyl/nordic.nvim" },
   { "crispybaccoon/evergarden" },
+  { "shaunsingh/nord.nvim" },
   { "NTBBloodbath/doom-one.nvim" },
   { "catppuccin/nvim", name = "catppuccin",
     config = function ()
@@ -93,7 +92,7 @@ local M = {
       })
 
       -- setup must be called before loading
-      vim.cmd.colorscheme "tokyodark"  
+      -- vim.cmd.colorscheme "pywal"  
     end},
 }
 

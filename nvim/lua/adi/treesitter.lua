@@ -7,10 +7,10 @@ function M.config()
   vim.defer_fn(function()
     require('nvim-treesitter.configs').setup {
       -- Add languages to be installed here that you want installed for treesitter
-      ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', "norg", "org", "c_sharp", "markdown", "markdown_inline" },
+      ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'vim', 'bash', "c_sharp" },
 
       -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-      auto_install = true,
+      -- auto_install = true,
 
       highlight = { enable = true },
       indent = { enable = true },
@@ -57,15 +57,15 @@ function M.config()
             ['[]'] = '@class.outer',
           },
         },
-        swap = {
-          enable = true,
-          swap_next = {
-            ['<leader>a'] = '@parameter.inner',
-          },
-          swap_previous = {
-            ['<leader>A'] = '@parameter.inner',
-          },
-        },
+        -- swap = {
+        --   enable = true,
+        --   swap_next = {
+        --     ['<leader>a'] = '@parameter.inner',
+        --   },
+        --   swap_previous = {
+        --     ['<leader>A'] = '@parameter.inner',
+        --   },
+        -- },
       },
     }
   end, 0)

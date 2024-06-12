@@ -55,7 +55,21 @@ keymap("n", "<leader>s", "ostd::cout <<  << std::endl;<Esc>13<left>i", opts)
 keymap("n", "<leader>l", "i```<Enter>```<Esc>kalua<Enter>", opts)
 -- keymap({"n"}, "<C-x>", ":MdEval<CR>")
 -- keymap({"i"}, "<C-x>", "<Esc>:MdEval<CR>i")
-keymap("n", "<leader>op", ":Neotree position=left toggle<CR>", opts)
+-- keymap("n", "<leader>op", ":Ve<Enter>60<C-w><", opts)
+keymap("n", "<leader>op", ":Neotree", opts)
 keymap("n", "L", "10zl")
 keymap("n", "H", "10zh")
 -- keymap("c", "q", "q|q")
+keymap("t", "<esc>", "<C-\\><C-n>")
+keymap("n", "<C-t>", ":split | terminal<CR>15<C-w>-")
+
+-- vim.api.nvim_create_autocmd({"BufWinLeave"}, {
+--   pattern = {"*.*"},
+--   desc = "save view (folds), when closing file",
+--   command = "mkview",
+-- })
+-- vim.api.nvim_create_autocmd({"BufWinEnter"}, {
+--   pattern = {"*.*"},
+--   desc = "load view (folds), when opening file",
+--   command = "silent! loadview"
+-- })
