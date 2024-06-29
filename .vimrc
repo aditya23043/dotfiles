@@ -1,12 +1,21 @@
+" WSL Yank Support
+let s:clip = '/mnt/c/Windows/System32/clip.exe'
+if executable(s:clip)
+	augroup WSLYank
+		autocmd!
+		autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+	augroup END
+endif
+
 " PLUGINS
 call plug#begin()
 
-Plug 'tpope/vim-sensible'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'morhetz/gruvbox'
 Plug 'honza/vim-snippets'
 Plug 'sainnhe/gruvbox-material'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ericbn/vim-solarized'
+Plug 'tpope/vim-sensible'
 
 call plug#end()
 
@@ -18,8 +27,8 @@ set timeoutlen=500
 set encoding=utf-8
 set nocompatible
 set number
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set noexpandtab
 set breakindent
 set smartindent
@@ -46,14 +55,6 @@ filetype indent on
 
 colo gruvbox-material
 set background=dark
-
-" Coc config
-
-nnoremap yy "+yy
-nnoremap dd "+dd
-vnoremap y "+y
-vnoremap d "+d
-nnoremap p "+p
 
 hi comment guifg=#444647
 hi LineNr guifg=#444647
@@ -163,3 +164,13 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" COC SNIPPETS CONFIG
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-l>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-h>'
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
