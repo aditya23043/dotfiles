@@ -49,8 +49,10 @@ elseif vim.g.colors_name == "okcolors" then
 
   -- Tokyonight
 elseif vim.g.colors_name == "tokyonight" then
-  vim.api.nvim_set_hl(0, "Comment", { fg = "#ffffff" })
+  vim.api.nvim_set_hl(0, "Comment", { fg = "#282828" })
   vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
+  vim.api.nvim_set_hl(0, "LineNr", { fg = "#282828" })
+  vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#7aa2f7" })
 
   -- Gruvbox
 elseif vim.g.colors_name == "gruvbox-material" then
@@ -58,4 +60,5 @@ elseif vim.g.colors_name == "gruvbox-material" then
   vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
   vim.api.nvim_set_hl(0, "LineNr", { fg = "#333333" })
   vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#ddc7a1" })
+  vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = "#282828" })
 end

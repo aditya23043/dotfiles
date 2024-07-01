@@ -8,7 +8,7 @@ local M = {
 }
 
 M.config = function()
-  vim.g.markdown_folding = 1
+  vim.g.markdown_folding = 0
   vim.g.markdown_fenced_languages = { "asm", "cpp", "python", "java", "lua" }
   -- vim.g.markdown_fold_override_foldtext = 0
 end

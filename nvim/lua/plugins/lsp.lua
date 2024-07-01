@@ -53,7 +53,6 @@ local M = {
         },
         -- ltex = {},
         jdtls = {},
-        hls = {},
         ast_grep = {
           default_config = {
             single_file_support = true,
