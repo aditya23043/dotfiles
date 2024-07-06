@@ -2,12 +2,15 @@ if status is-interactive
   set fish_greeting ''
 end
 
+if test "$TERM" = "linux"
+  setfont /usr/share/kbd/consolefonts/ter-p28b.psf.gz
+end
+
 
 alias ls "eza -lah --color=always --group-directories-first -F"
 export QT_QPA_PLATFORMTHEME=gtk2
-#export GTK_THEME=Flat-Remix-GTK-Magenta-Dark
-export GTK_THEME=Gruvbox-Material-Dark
-set -U fish_color_autosuggestion "3e3e3e"
+export GTK_THEME=Flat-Remix-GTK-Magenta-Dark
+set -U fish_color_autosuggestion "#333333"
 alias aur "xdg-open https://aur.archlinux.org"
 alias files "fzf --preview='cat {}' | xargs nvim"
 set JAVA_HOME "/usr/lib/jvm/java-22-openjdk"

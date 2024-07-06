@@ -5,25 +5,15 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-/*static char *font =*/
-/*    "VictorMono NFM:style=Bold:size=18:antialias=true:autohint=true";*/
-/*static char *font =*/
-/*    "Maple Mono:style=Bold:size=18:antialias=true:autohint=true";*/
+// static char *font =
+//     "VictorMono NFM:style=Bold:size=15:antialias=true:autohint=true";
+// static char *font =
+//     "JetBrainsMonoNFM:style=Bold:size=15:antialias=true:autohint=true";
+// static char *font =
+//     "Iosevka NFM:style=ExtraBold:size=18:antialias=true:autohint=true";
 static char *font =
-    "JetBrainsMonoNFM:style=SemiBold:size=17:antialias=true:autohint=true";
-/*static char *font = "Iosevka Term SS07 "*/
-/*                    "Extended:style=Bold:size=18:antialias=true:autohint=true";*/
-/*static char *font = "Iosevka Term SS07 SmBd "*/
-/*                    "Obl:style=SemiBold:size=18:antialias=true:autohint=true";*/
-/*static char *font = "Iosevka Term SS07 SmBd "*/
-/*                    "Ex:style=SemiBold:size=18:antialias=true:autohint=true";*/
-/*static char *font = "Iosevka Term SS07"*/
-/*                    ":style=Bold:size=18:antialias=true:autohint=true";*/
-/*static char *font = "Pragmasevka Nerd Font"*/
-/*                    ":style=regular:size=20:antialias=true:autohint=true";*/
-/*static char *font =*/
-/*    "Iosevka Term SS07 Semibold Extended"*/
-/*    ":style=Semibold Extended:size=18:antialias=true:autohint=true";*/
+    "Pragmasevka Nerd Font:style=Bold:size=18:antialias=true:autohint=true";
+
 static int borderpx = 2;
 
 /*
@@ -44,7 +34,7 @@ char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 char *vtiden = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
-static float cwscale = 0.85;
+static float cwscale = 1;
 static float chscale = 1;
 
 /*
@@ -112,7 +102,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.75;
+float alpha = 0.55;
 
 /* Terminal colors (16 first used in escape sequence) */
 /*static const char *colorname[] = {*/
@@ -165,9 +155,10 @@ float alpha = 0.75;
 /*    "#000000",*/
 /*};*/
 
+// GRUVBOX
 static const char *colorname[] = {
     //  8 normal colors
-    "#000000",
+    "#484848",
     "#ea6962",
     "#a9b665",
     "#d8a657",
@@ -175,9 +166,9 @@ static const char *colorname[] = {
     "#d3869b",
     "#89b482",
     "#ddc7a1",
-
+    //
     //  8 bright colors
-    "#000000",
+    "#484848",
     "#ea6962",
     "#a9b665",
     "#d8a657",
@@ -186,12 +177,41 @@ static const char *colorname[] = {
     "#89b482",
     "#ddc7a1",
     [255] = 0,
-
+    //
     "#d4be98",
     "#000000",
     "#ddc7a1",
-    "#000000",
+    "#141617",
 };
+
+// TOKYONIGHT
+// static const char *colorname[] = {
+//     //  8 normal colors
+//     "#15161e",
+//     "#f7768e",
+//     "#9ece6a",
+//     "#e0af68",
+//     "#7aa2f7",
+//     "#bb9af7",
+//     "#7dcfff",
+//     "#a9b1d6",
+//
+//     //  8 bright colors
+//     "#15161e",
+//     "#f7768e",
+//     "#9ece6a",
+//     "#e0af68",
+//     "#7aa2f7",
+//     "#bb9af7",
+//     "#7dcfff",
+//     "#a9b1d6",
+//     [255] = 0,
+//
+//     "#999999",
+//     "#000000",
+//     "#a9b1d6",
+//     "#000000",
+// };
 
 /*
  * Default colors (colorname index)
