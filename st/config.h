@@ -11,8 +11,11 @@
 //     "JetBrainsMonoNFM:style=Bold:size=16:antialias=true:autohint=true";
 // static char *font =
 //     "Iosevka NFM:style=Regular:size=20:antialias=true:autohint=true";
+// static char *font =
+//     "Pragmasevka Nerd
+//     Font:style=Regular:size=18:antialias=true:autohint=true";
 static char *font =
-    "Pragmasevka Nerd Font:style=Regular:size=18:antialias=true:autohint=true";
+    "VictorMono NFM:style=Bold:size=18:antialias=true:autohint=true";
 
 static int borderpx = 2;
 
@@ -34,7 +37,7 @@ char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 char *vtiden = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
-static float cwscale = 1;
+static float cwscale = 0.95;
 static float chscale = 1;
 
 /*
@@ -181,7 +184,8 @@ static const char *colorname[] = {
     "#d4be98",
     "#000000",
     "#ddc7a1",
-    "#141617",
+    // "#141617",
+    "#0d1117",
 };
 
 // TOKYONIGHT
