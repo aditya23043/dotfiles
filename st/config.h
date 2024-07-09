@@ -8,11 +8,11 @@
 // static char *font =
 //     "VictorMono NFM:style=Bold:size=15:antialias=true:autohint=true";
 // static char *font =
-//     "JetBrainsMonoNFM:style=Bold:size=15:antialias=true:autohint=true";
+//     "JetBrainsMonoNFM:style=Bold:size=16:antialias=true:autohint=true";
 // static char *font =
-//     "Iosevka NFM:style=ExtraBold:size=18:antialias=true:autohint=true";
+//     "Iosevka NFM:style=Regular:size=20:antialias=true:autohint=true";
 static char *font =
-    "Pragmasevka Nerd Font:style=Bold:size=18:antialias=true:autohint=true";
+    "Pragmasevka Nerd Font:style=Regular:size=18:antialias=true:autohint=true";
 
 static int borderpx = 2;
 
