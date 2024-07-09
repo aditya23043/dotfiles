@@ -18,7 +18,35 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: PLUGINS
 require("lazy").setup({
 
-    { "dhruvasagar/vim-table-mode" },
+    {
+        { "projekt0n/github-nvim-theme" },
+        { "navarasu/onedark.nvim" },
+        { "EdenEast/nightfox.nvim" },
+        {
+            "catppuccin/nvim",
+            name = "Catppuccin"
+        },
+        {
+            "https://github.com/shaunsingh/solarized.nvim",
+            lazy = false,
+            config = function()
+            end,
+        },
+        {
+            "folke/tokyonight.nvim",
+            lazy = false,
+            opts = {},
+        },
+        {
+            "sainnhe/gruvbox-material",
+            lazy = false,
+        },
+
+    },
+
+    {
+        "dhruvasagar/vim-table-mode"
+    },
 
     {
         'MeanderingProgrammer/markdown.nvim',
@@ -126,7 +154,27 @@ require("lazy").setup({
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
-        opts = {}
+        opts = {},
+        config = function()
+            local highlight = { "iblColor" }
+            local scope_highlight = { "scope_iblColor" }
+            local hooks = require "ibl.hooks"
+            hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+                vim.api.nvim_set_hl(0, "iblColor", { fg = "#1c2431" })
+                vim.api.nvim_set_hl(0, "scope_iblColor", { fg = "#aaaaaa" })
+            end)
+            require("ibl").setup {
+                indent = {
+                    highlight = highlight,
+                    char = '│'
+                },
+                scope = {
+                    enabled = true,
+                    highlight = scope_highlight,
+                    show_start = false,
+                }
+            }
+        end
     },
     {
         'windwp/nvim-autopairs',
@@ -135,13 +183,6 @@ require("lazy").setup({
         -- use opts = {} for passing setup options
         -- this is equalent to setup({}) function
     },
-    {
-        "https://github.com/shaunsingh/solarized.nvim",
-        lazy = false,
-        config = function()
-        end,
-    },
-
     {
         "hedyhli/outline.nvim",
         config = function()
@@ -153,15 +194,6 @@ require("lazy").setup({
                 -- Your setup opts here (leave empty to use defaults)
             }
         end,
-    },
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        opts = {},
-    },
-    {
-        "sainnhe/gruvbox-material",
-        lazy = false,
     },
     {
         "williamboman/mason.nvim",
@@ -513,7 +545,7 @@ require("lazy").setup({
 
 -- NOTE: OPTIONS
 
-vim.cmd.colorscheme("gruvbox-material")
+vim.cmd.colorscheme("github_dark_tritanopia")
 
 vim.opt.number = true
 vim.opt.clipboard = "unnamedplus"
@@ -584,6 +616,11 @@ if vim.g.colors_name == "gruvbox-material" then
     vim.api.nvim_set_hl(0, "LineNr", { fg = "#383838" })
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
     vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
+    vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
+elseif vim.g.colors_name == "github_dark_tritanopia" then
+    vim.api.nvim_set_hl(0, "Comment", { fg = "#253041" })
+    vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
+    vim.api.nvim_set_hl(0, "LineNr", { fg = "#111111" })
     vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
 end
 
