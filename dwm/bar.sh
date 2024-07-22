@@ -10,4 +10,9 @@ volume(){
   echo -ne "VOL: $cmd%"
 }
 
-xsetroot -name " $(volume) | $(battery) "
+mute(){
+  cmd="$(pactl get-sink-mute @DEFAULT_SINK@)"
+  echo -ne "$cmd"
+}
+
+xsetroot -name " $(mute) | $(volume) | $(battery) "

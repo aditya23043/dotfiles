@@ -5,19 +5,9 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-// static char *font =
-//     "VictorMono NFM:style=Bold:size=15:antialias=true:autohint=true";
-// static char *font =
-//     "JetBrainsMonoNFM:style=Bold:size=16:antialias=true:autohint=true";
-// static char *font =
-//     "Iosevka NFM:style=Regular:size=20:antialias=true:autohint=true";
-// static char *font =
-//     "Pragmasevka Nerd
-//     Font:style=Regular:size=18:antialias=true:autohint=true";
-static char *font =
-    "VictorMono NFM:style=Bold:size=18:antialias=true:autohint=true";
+static char *font = "Lekton Nerd Font Mono:style=Bold:size=21:antialias=true:autohint=true";
 
-static int borderpx = 2;
+static int borderpx = 0;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -37,7 +27,7 @@ char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 char *vtiden = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
-static float cwscale = 0.95;
+static float cwscale = 0.9;
 static float chscale = 1;
 
 /*
@@ -105,117 +95,9 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.55;
+float alpha = 0.8;
 
-/* Terminal colors (16 first used in escape sequence) */
-/*static const char *colorname[] = {*/
-/*    //  8 normal colors*/
-/*    [0] = "#000000", //  hard contrast: #1d2021 / soft contrast: #32302f*/
-/*    [1] = "#ea6962", //  red*/
-/*    [2] = "#a9b665", //  green*/
-/*    [3] = "#d8a657", //  yellow*/
-/*    [4] = "#7daea3", //  blue*/
-/*    [5] = "#d3869b", //  magenta*/
-/*    [6] = "#89b482", //  cyan*/
-/*    [7] = "#d4be98", //  white*/
-/**/
-/*    //  8 bright colors*/
-/*    [8] = "#928374",  //  black*/
-/*    [9] = "#ef938e",  //  red*/
-/*    [10] = "#bbc585", //  green*/
-/*    [11] = "#e1bb7e", //  yellow*/
-/*    [12] = "#9dc2ba", //  blue*/
-/*    [13] = "#e1acbb", //  magenta*/
-/*    [14] = "#a7c7a2", //  cyan*/
-/*    [15] = "#e2d3ba", //  white*/
-/*};*/
-
-/*static const char *colorname[] = {*/
-/*    //  8 normal colors*/
-/*    "#282c34",*/
-/*    "#e06c75",*/
-/*    "#98c379",*/
-/*    "#e5c07b",*/
-/*    "#61afef",*/
-/*    "#c678dd",*/
-/*    "#56b6c2",*/
-/*    "#abb2bf",*/
-/**/
-/*    //  8 bright colors*/
-/*    "#282c34",*/
-/*    "#e06c75",*/
-/*    "#98c379",*/
-/*    "#e5c07b",*/
-/*    "#61afef",*/
-/*    "#c678dd",*/
-/*    "#56b6c2",*/
-/*    "#abb2bf",*/
-/*    [255] = 0,*/
-/**/
-/*    "#cccccc",*/
-/*    "#555555",*/
-/*    "#abb2bf",*/
-/*    "#000000",*/
-/*};*/
-
-// GRUVBOX
-static const char *colorname[] = {
-    //  8 normal colors
-    "#484848",
-    "#ea6962",
-    "#a9b665",
-    "#d8a657",
-    "#7daea3",
-    "#d3869b",
-    "#89b482",
-    "#ddc7a1",
-    //
-    //  8 bright colors
-    "#484848",
-    "#ea6962",
-    "#a9b665",
-    "#d8a657",
-    "#7daea3",
-    "#d3869b",
-    "#89b482",
-    "#ddc7a1",
-    [255] = 0,
-    //
-    "#d4be98",
-    "#000000",
-    "#ddc7a1",
-    // "#141617",
-    "#0d1117",
-};
-
-// TOKYONIGHT
-// static const char *colorname[] = {
-//     //  8 normal colors
-//     "#15161e",
-//     "#f7768e",
-//     "#9ece6a",
-//     "#e0af68",
-//     "#7aa2f7",
-//     "#bb9af7",
-//     "#7dcfff",
-//     "#a9b1d6",
-//
-//     //  8 bright colors
-//     "#15161e",
-//     "#f7768e",
-//     "#9ece6a",
-//     "#e0af68",
-//     "#7aa2f7",
-//     "#bb9af7",
-//     "#7dcfff",
-//     "#a9b1d6",
-//     [255] = 0,
-//
-//     "#999999",
-//     "#000000",
-//     "#a9b1d6",
-//     "#000000",
-// };
+static const char *colorname[] = { "#282c34", "#e06c75", "#98c379", "#e5c07b", "#61afef", "#c678dd", "#56b6c2", "#c5cad3", "#282c34", "#e06c75", "#98c379", "#e5c07b", "#61afef", "#c678dd", "#56b6c2", "#c5cad3", [255] = 0, "#abb2bf", "#16181d", "#abb2bf", "#16181d" };
 
 /*
  * Default colors (colorname index)
