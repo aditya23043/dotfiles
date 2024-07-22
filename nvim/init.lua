@@ -42,6 +42,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 			vim.api.nvim_set_hl(0, "Statusline", { bg = "none" })
 			vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 			vim.api.nvim_set_hl(0, "@comment", { fg = "#2c303a" })
+			vim.api.nvim_set_hl(0, "Comment", { link = "@comment" })
 			vim.api.nvim_set_hl(0, "LineNr", { fg = "#2c303a" })
 		elseif vim.g.colors_name == "tokyonight-storm" then
 			vim.api.nvim_set_hl(0, "Comment", { fg = "#2a2c3c" })
