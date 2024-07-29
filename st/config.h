@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Lekton Nerd Font Mono:style=Bold:size=21:antialias=true:autohint=true";
+static char *font = "JetBrainsMonoNFM:style=Semibold:size=18:antialias=true:autohint=true";
 
 static int borderpx = 0;
 
@@ -95,9 +95,9 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.8;
+float alpha = 0.9;
 
-static const char *colorname[] = { "#282c34", "#e06c75", "#98c379", "#e5c07b", "#61afef", "#c678dd", "#56b6c2", "#c5cad3", "#282c34", "#e06c75", "#98c379", "#e5c07b", "#61afef", "#c678dd", "#56b6c2", "#c5cad3", [255] = 0, "#abb2bf", "#16181d", "#abb2bf", "#16181d" };
+static const char *colorname[] = { "#282828", "#ea6962", "#a9b665", "#d8a657", "#7daea3", "#d3869b", "#89b482", "#d4be98", "#282828", "#ea6962", "#a9b665", "#d8a657", "#7daea3", "#d3869b", "#89b482", "#d4be98", [255] = 0, "#ddc7a1", "#141617", "#ddc7a1", "#141617" };
 
 /*
  * Default colors (colorname index)

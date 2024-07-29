@@ -7,7 +7,8 @@ if test "$TERM" = "linux"
 end
 
 
-alias ls "eza -lah --color=always --group-directories-first -F"
+alias ll "eza -lah --color=always --group-directories-first -F --icons=always"
+alias ls "eza --group-directories-first -F -a --color=always --icons=always"
 export QT_QPA_PLATFORMTHEME=gtk2
 export GTK_THEME=Dracula
 alias aur "xdg-open https://aur.archlinux.org"
@@ -20,4 +21,4 @@ bind \ef accept-autosuggestion
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /home/adi/.ghcup/bin # ghcup-env
 
-set -U fish_color_autosuggestion "#2c303a"
+set -U fish_color_autosuggestion "#242729"

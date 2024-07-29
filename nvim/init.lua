@@ -1,5 +1,45 @@
+-- PLUGINS
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+require("lazy").setup({
+  spec = {
+    {
+		{ 'norcalli/nvim-colorizer.lua' },
+		{ 'wbthomason/packer.nvim' },
+		{ 'neoclide/coc.nvim' },
+		{ 'maxmx03/solarized.nvim' },
+		{ 'honza/vim-snippets' },
+		{ 'sainnhe/gruvbox-material' },
+		{ 'navarasu/onedark.nvim' },
+		{ 'folke/tokyonight.nvim' },
+		{
+			'windwp/nvim-autopairs',
+			event = "InsertEnter",
+			config = true
+		}
+	},
+  },
+  install = { colorscheme = { "gruvbox-material" } },
+  checker = { enabled = false },
+})
 
 vim.opt.wrap = false
 vim.opt.clipboard = "unnamedplus"
@@ -31,10 +71,14 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 			vim.api.nvim_set_hl(0, "Comment", { fg = "#e4decd" })
 			vim.api.nvim_set_hl(0, "Search", { bg = "#586e75", fg = "#eee8d5" })
 			vim.api.nvim_set_hl(0, "Normal", { fg = "#002b36", bg = "#fdf6e3" })
+			vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+			vim.api.nvim_set_hl(0, "LineNr", { bg = "none", fg = "#e4decd" })
 		elseif vim.g.colors_name == "solarized" and vim.o.background == "dark" then
 			vim.api.nvim_set_hl(0, "MatchParen", { fg = "#dc322f", bg = "none" })
 			vim.api.nvim_set_hl(0, "Comment", { fg = "#003d4d" })
 			vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+			vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+			vim.api.nvim_set_hl(0, "LineNr", { bg = "none", fg = "#003d4d" })
 			vim.api.nvim_set_hl(0, "Statusline", { bg = "#073642", fg = "#93a1a1" })
 		elseif vim.g.colors_name == "onedark" then
 			vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -70,7 +114,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	end,
 })
 
-vim.cmd.colorscheme "onedark"
+vim.cmd.colorscheme "gruvbox-material"
 vim.opt.background = "dark"
 
 -- COC CONFIG
@@ -86,12 +130,13 @@ local opts = { silent = true, noremap = true, expr = true, replace_keycodes = fa
 keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(0) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
 keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(0) : "\<C-h>"]], opts)
 
-keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
+keyset("i", "<CR>", 'coc#pum#visible() ? coc#pum#confirm() : <CR>')
 
 -- Use <c-j> to trigger snippets
 keyset("i", "<c-l>", "<Plug>(coc-snippets-expand-jump)")
 -- Use <c-space> to trigger completion
-keyset("i", "<c-space>", "coc#refresh()", { silent = true, expr = true })
+-- keyset("i", "<c-space>", "coc#refresh()", { silent = true, expr = true })
+keyset("i", "<c-space>", "coc#pum#confirm()", { silent = true, expr = true })
 
 -- Use `[g` and `]g` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
@@ -257,29 +302,3 @@ vim.g.coc_status_hint_sign = ""
 require('onedark').setup {
     style = 'darker'
 }
-
--- PLUGINS
-
-local ensure_packer = function()
-	local fn = vim.fn
-	local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-	if fn.empty(fn.glob(install_path)) > 0 then
-		fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-		vim.cmd [[packadd packer.nvim]]
-		return true
-	end
-	return false
-end
-
-local packer_bootstrap = ensure_packer()
-
-return require('packer').startup(function(use)
-	use 'norcalli/nvim-colorizer.lua'
-	use 'wbthomason/packer.nvim'
-	use 'neoclide/coc.nvim'
-	use 'maxmx03/solarized.nvim'
-	use 'honza/vim-snippets'
-	use 'sainnhe/gruvbox-material'
-	use 'navarasu/onedark.nvim'
-	use 'folke/tokyonight.nvim'
-end)

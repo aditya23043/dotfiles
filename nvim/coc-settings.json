@@ -1,7 +1,7 @@
 {
 	"prettier.indentWidth": 4,
 	"snippets.ultisnips.pythonPrompt": false,
-	"suggest.noselect": false,
+	"suggest.noselect": true,
 	"suggest.completionItemKindLabels": {
 		"keyword": "\uf1de",
 		"variable": "\ue79b",
