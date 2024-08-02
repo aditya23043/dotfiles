@@ -6,6 +6,12 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+
+/* disable bold, italic and roman fonts globally */
+int disablebold = 0;
+int disableitalic = 0;
+int disableroman = 0;
+
 static int borderpx = 2;
 
 /*
@@ -92,9 +98,6 @@ char *termname = "st-256color";
  *	stty tabs
  */
 unsigned int tabspaces = 8;
-
-/* bg opacity */
-float alpha = 0.8;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
@@ -205,7 +208,7 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
-	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
+    { ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };
 
 /*

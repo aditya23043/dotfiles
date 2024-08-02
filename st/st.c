@@ -44,8 +44,8 @@
 #define ISCONTROL(c)		(ISCONTROLC0(c) || ISCONTROLC1(c))
 #define ISDELIM(u)		(u && wcschr(worddelimiters, u))
 #define TLINE(y)		((y) < term.scr ? term.hist[((y) + term.histi - \
-				term.scr + HISTSIZE + 1) % HISTSIZE] : \
-				term.line[(y) - term.scr])
+            term.scr + HISTSIZE + 1) % HISTSIZE] : \
+            term.line[(y) - term.scr])
 
 enum term_mode {
 	MODE_WRAP        = 1 << 0,
@@ -1104,13 +1104,13 @@ tscrolldown(int orig, int n, int copyhist)
 	Line temp;
 
 	LIMIT(n, 0, term.bot-orig+1);
+
 	if (copyhist) {
 		term.histi = (term.histi - 1 + HISTSIZE) % HISTSIZE;
 		temp = term.hist[term.histi];
 		term.hist[term.histi] = term.line[term.bot];
 		term.line[term.bot] = temp;
 	}
-
 
 	tsetdirt(orig, term.bot-n);
 	tclearregion(0, term.bot-n+1, term.col-1, term.bot);
@@ -1194,6 +1194,7 @@ csiparse(void)
 {
 	char *p = csiescseq.buf, *np;
 	long int v;
+	int sep = ';'; /* colon or semi-colon, but not both */
 
 	csiescseq.narg = 0;
 	if (*p == '?') {
@@ -1211,7 +1212,9 @@ csiparse(void)
 			v = -1;
 		csiescseq.arg[csiescseq.narg++] = v;
 		p = np;
-		if (*p != ';' || csiescseq.narg == ESC_ARG_SIZ)
+		if (sep == ';' && *p == ':')
+			sep = ':'; /* allow override to colon once */
+		if (*p != sep || csiescseq.narg == ESC_ARG_SIZ)
 			break;
 		p++;
 	}
