@@ -1,7 +1,13 @@
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
+
+    -- VS CODE COLOR
+    if vim.g.colors_name == "darkplus" then
+      vim.api.nvim_set_hl(0, "Comment", { fg = "#1e1e1e" })
+      vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
+
     -- Onedark
-    if vim.g.colors_name == "onedark" then
+    elseif vim.g.colors_name == "onedark" then
       -- vim.api.nvim_set_hl(0, "Comment", { fg = "#373c49", italic = true })
       vim.api.nvim_set_hl(0, "Comment", { fg = "#2c313a", italic = true })
       vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
@@ -47,13 +53,33 @@ vim.api.nvim_create_autocmd("ColorScheme", {
       vim.api.nvim_set_hl(0, "Pmenu", { fg = "#abb2bf", bg = "#000000" })
       vim.api.nvim_set_hl(0, "PmenuSel", { fg = "#000000", bg = "#abb2bf" })
 
-      -- Tokyonight
+    -- Tokyonight
     elseif vim.g.colors_name == "tokyonight" then
       vim.api.nvim_set_hl(0, "Comment", { fg = "#ffffff" })
       vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
 
-      -- Gruvbox
-    elseif vim.g.colors_name == "gruvbox-material" then
+    -- Solarized
+    elseif vim.g.colors_name == "solarized" and vim.o.background == "dark" then
+      vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
+      vim.api.nvim_set_hl(0, "LineNr", { fg = "#003d4d" })
+      vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "none" })
+      vim.api.nvim_set_hl(0, "Comment", { fg = "#003d4d" })
+      vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
+      vim.api.nvim_set_hl(0, "Visual", { bg = "#003d4d", fg = "#000000" })
+      vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = "#003d4d" })
+      vim.api.nvim_set_hl(0, "PmenuSel", { fg = "#000000", bg = "#839496" })
+      vim.api.nvim_set_hl(0, "StatusLine", { bg = "#003d4d", fg = "#839496" })
+
+    -- Gruvbox
+    elseif vim.g.colors_name == "gruvbox-material" and vim.o.background == "light" then
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "Comment", { fg = "#dfcd9f" })
+      vim.api.nvim_set_hl(0, "LineNr", { fg = "#dfcd9f" })
+      vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
+      vim.api.nvim_set_hl(0, "StatusLine", { bg = "#654735", fg = "#ebdbb2" })
+      vim.api.nvim_set_hl(0, "Visual", { bg = "#e5d09a", fg = "#000000" })
+
+    elseif vim.g.colors_name == "gruvbox-material" and vim.o.background == "dark" then
       vim.api.nvim_set_hl(0, "Normal", { bg = "#141617" })
       vim.api.nvim_set_hl(0, "Comment", { fg = "#242729" })
       vim.api.nvim_set_hl(0, "LineNr", { fg = "#242729" })
@@ -67,4 +93,5 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   end,
 })
 
-vim.cmd.colorscheme("gruvbox-material")
+vim.cmd.colorscheme "gruvbox-material"
+vim.opt.background = "dark"

@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "MartianMono NFM:style=Condensed Medium:size=18:antialias=true:autohint=true";
+static char *font = "JetBrainsMonoNFM:style=Bold:size=15:antialias=true:autohint=true";
 
 /* disable bold, italic and roman fonts globally */
 int disablebold = 1;

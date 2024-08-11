@@ -13,15 +13,14 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "JetBrainsMono NFM:style=Bold:size=10" };
 static const char dmenufont[]       = "JetBrainsMono NFM:style=Bold:size=10";
-static const char col_gray1[]       = "#141617";
-static const char col_gray2[]       = "#141617";
-static const char col_gray3[]       = "#888888";
-static const char col_gray4[]       = "#000000";
-static const char col_cyan[]        = "#7daea3";
+static const char norm_bg[] = "#141617";
+static const char norm_fg[] = "#888888";
+static const char sel_fg[]  = "#000000";
+static const char accent_col[] = "#7daea3";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { norm_fg, norm_bg,    norm_bg },
+	[SchemeSel]  = { sel_fg, accent_col, accent_col  },
 };
 
 /* tagging */
@@ -63,7 +62,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", accent_col, "-sf", sel_fg, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static const Key keys[] = {
@@ -106,6 +105,7 @@ static const Key keys[] = {
     { 0, 							XF86XK_AudioMute, 			spawn, SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle; /home/adi/.config/dwm/bar.sh")},
     { 0, 							XF86XK_MonBrightnessUp, 	spawn, SHCMD("sudo ybacklight -inc 10%; /home/adi/.config/dwm/bar.sh")},
     { 0, 							XF86XK_MonBrightnessDown, 	spawn, SHCMD("sudo ybacklight -dec 10%; /home/adi/.config/dwm/bar.sh")},
+    { 0,              XF86XK_AudioPlay,              spawn, SHCMD("playerctl play-pause")},
 };
 
 /* button definitions */

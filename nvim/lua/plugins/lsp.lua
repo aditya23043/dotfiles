@@ -59,7 +59,8 @@ local M = {
             single_file_support = true,
           }
         },
-      }
+        gopls = {}
+}
 
       local default_diagnostic_config = {
         signs = {
@@ -164,7 +165,8 @@ local M = {
           markdown = { "prettier" },
           haskell = { "fourmolu" },
           rust = { "rustfmt" },
-        },
+          go = { "crlfmt" },
+},
       })
     end,
   },
