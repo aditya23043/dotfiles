@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrainsMonoNFM:style=Bold:size=15:antialias=true:autohint=true";
+static char *font = "JetBrainsMonoNFM:style=Bold:size=18:antialias=true:autohint=true";
 
 /* disable bold, italic and roman fonts globally */
 int disablebold = 1;
@@ -98,9 +98,10 @@ char *termname = "st-256color";
  *	stty tabs
  */
 unsigned int tabspaces = 8;
+static const int alpha = 0xdd;
 
 /* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = { "#282828", "#ea6962", "#a9b665", "#d8a657", "#7daea3", "#d3869b", "#89b482", "#d4be98", "#282828", "#ea6962", "#a9b665", "#d8a657", "#7daea3", "#d3869b", "#89b482", "#d4be98", [255] = 0, "#ddc7a1", "#141617", "#ddc7a1", "#141617" };
+static const char *colorname[] = { "#282828", "#dc322f", "#859900", "#b58900", "#268bd2", "#d33682", "#2aa198", "#839496", "#282828", "#dc322f", "#859900", "#b58900", "#268bd2", "#d33682", "#2aa198", "#839496", [255] = 0, "#002b36", "#fdf6e3", "#002b36", "#fdf6e3" };
 
 /*
  * Default colors (colorname index)

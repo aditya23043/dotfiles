@@ -26,3 +26,5 @@ require("lazy").setup({
     notify = false,
   },
 })
+
+vim.cmd("set statusline=%!v:lua.require'statusbar'.statusline()")

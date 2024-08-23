@@ -28,7 +28,7 @@ local M = {
       local servers = {
         rust_analyzer = {},
         bashls = {},
-        pyright = {},
+        -- pyright = {},
         lua_ls = {
           checkThirdParty = false,
           telemetry = { enable = false },
@@ -59,7 +59,18 @@ local M = {
             single_file_support = true,
           }
         },
-        gopls = {}
+        gopls = {},
+        biome = {
+          default_config = {
+            single_file_support = true,
+          }
+        },
+        emmet_ls = {},
+        html = {},
+        cssls = {},
+        pylsp = {},
+        pyright = {},
+        verible = {},
 }
 
       local default_diagnostic_config = {
@@ -161,11 +172,13 @@ local M = {
           python = { "black" },
           cpp = { "clang-format" },
           java = { "clang-format" },
+          javascript = { "biome" },
           c = { "clang-format" },
           markdown = { "prettier" },
           haskell = { "fourmolu" },
           rust = { "rustfmt" },
           go = { "crlfmt" },
+          verilog = { "verible" }
 },
       })
     end,

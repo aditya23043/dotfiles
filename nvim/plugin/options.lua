@@ -22,7 +22,7 @@ vim.opt.showmode = false
 -- vim.cmd("set foldcolumn=1")
 
 -- always show tabs
-vim.opt.showtabline = 1
+vim.opt.showtabline = 0
 
 -- convert tabs to spaces
 vim.opt.expandtab = true
@@ -64,7 +64,7 @@ vim.opt.pumblend = 0
 vim.opt.conceallevel = 3
 
 -- Status bar
-vim.opt.laststatus = 3
+vim.opt.laststatus = 0
 
 -- the encoding written to a file
 vim.opt.fileencoding = "utf-8"
