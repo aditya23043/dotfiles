@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<map>
+  <int name="bookmarkColor" value="-4482313" />
+  <int name="bookmarkMode" value="1" />
+  <int name="lastUpdateCheck" value="1724727993" />
+  <int name="pageColor" value="-16777216" />
+  <int name="penType" value="11" />
+  <int name="ruleColor" value="-14540254" />
+  <int name="showAdvPrefs" value="1" />
+  <int name="showPenToolbar" value="1" />
+  <int name="singleTouchMode" value="1" />
+  <int name="strokeCounter" value="23373" />
+  <float name="marginLeft" value="45" />
+  <float name="pageHeight" value="1660" />
+  <float name="pageWidth" value="922" />
+  <float name="xRuling" value="45" />
+  <float name="yRuling" value="45" />
+  <string name="currFolder" value="/home/adi/repo/notes/sem3/" />
+  <string name="docFileExt" value="svgz" />
+  <string name="newDocTitleFmt" value="%b %e %Hh%M" />
+  <string name="recentDocs" value="/home/adi/repo/notes/written/CTD.svgz:::/home/adi/repo/notes/written/SNS.svgz:::/home/adi/repo/notes/written/ELD.svgz:::/home/adi/repo/notes/written/Aug 21 15h27.svgz:::/home/adi/repo/notes/written/Aug 28 14h41.svgz:::/home/adi/repo/notes/written/ctd revision.svgz:::/home/adi/repo/notes/written/Aug 27 10h31.svgz" />
+  <string name="savedColors" value="#FFC0CAF5,#FF2A2C3C,#FFF7768E,#FFBB9AF7,#FF7DCFFF,#FF7AA2F7,#FF9ECE6A,#FFE0AF68,#FF73D9C9" />
+  <string name="savedWidths" value="1.400,2.400,4.000,8.000" />
+  <string name="toolBars2" value="docTitle,stretch,actionSave,separator,tools,separator,undoRedoBtn,separator,seltools,separator,actionShow_Bookmarks,actionShow_Clippings,actionSplitView,separator,actionOverflow_Menu" />
+  <string name="toolModes" value="14 18 27 23" />
+  <string name="windowState" value="0 20 1920 1060 1 0" />
+  <pen color="4294298304" width="1.39999998" wRatio="0" pressure="0" speed="0" direction="0" dash="0" gap="0" flags="512" />
+  <pen color="4287526647" width="2.4000001" wRatio="0" pressure="0" speed="0" direction="0" dash="0" gap="0" flags="512" />
+  <pen color="4294298304" width="2.4000001" wRatio="0" pressure="0" speed="0" direction="0" dash="0" gap="0" flags="518" />
+  <pen color="4294298304" width="8" wRatio="0" pressure="0" speed="0" direction="0" dash="0" gap="0" flags="512" />
+  <pen color="4278190080" width="3" wRatio="0.800000012" pressure="2" speed="0" direction="45" dash="0" gap="0" flags="336" />
+  <pen color="4278190080" width="1.79999995" wRatio="0.699999988" pressure="0" speed="0.5" direction="0" dash="0" gap="0" flags="288" />
+  <pen color="4278190080" width="4" wRatio="0" pressure="0" speed="0" direction="0" dash="0" gap="0" flags="512" />
+  <pen color="2147450879" width="34" wRatio="0" pressure="0" speed="0" direction="0" dash="0" gap="0" flags="1025" />
+</map>
