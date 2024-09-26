@@ -28,6 +28,8 @@ local M = {
       local servers = {
         rust_analyzer = {},
         bashls = {},
+        asm_lsp = {},
+        denols = {},
         -- pyright = {},
         lua_ls = {
           checkThirdParty = false,
@@ -52,6 +54,9 @@ local M = {
           init_options = { clangdFileStatus = true },
           filetypes = { "c", "cpp", },
         },
+
+        htmx = {},
+
         -- ltex = {},
         jdtls = {},
         ast_grep = {
@@ -71,7 +76,7 @@ local M = {
         pylsp = {},
         pyright = {},
         verible = {},
-}
+      }
 
       local default_diagnostic_config = {
         signs = {
@@ -80,18 +85,26 @@ local M = {
             -- [vim.diagnostic.severity.WARN] = '',
             -- [vim.diagnostic.severity.INFO] = '',
             -- [vim.diagnostic.severity.HINT] = ''
-            [vim.diagnostic.severity.ERROR] = '',
-            [vim.diagnostic.severity.WARN] = '',
-            [vim.diagnostic.severity.INFO] = '',
-            [vim.diagnostic.severity.HINT] = ''
+            -- [vim.diagnostic.severity.ERROR] = '',
+            -- [vim.diagnostic.severity.WARN] = '',
+            -- [vim.diagnostic.severity.INFO] = '',
+            -- [vim.diagnostic.severity.HINT] = ''
+            [vim.diagnostic.severity.ERROR] = '>>',
+            [vim.diagnostic.severity.WARN] = '>>',
+            [vim.diagnostic.severity.INFO] = '>>',
+            [vim.diagnostic.severity.HINT] = '>>'
           }
         },
 
         virtual_text = true,
         update_in_insert = false,
-        underline = false,
+        underline = true,
         severity_sort = true,
+        open_float = {
+          enable = true,
+        },
         float = {
+          enable = true,
           focusable = true,
           style = "minimal",
           border = "rounded",
@@ -178,9 +191,13 @@ local M = {
           haskell = { "fourmolu" },
           rust = { "rustfmt" },
           go = { "crlfmt" },
-          verilog = { "verible" }
-},
+          verilog = { "verible" },
+          html = { "htmlbeautifier" },
+          css = { "prettier" },
+          asm = { "asmfmt" },
+        },
       })
+
     end,
   },
 }

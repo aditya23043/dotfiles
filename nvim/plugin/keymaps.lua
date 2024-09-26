@@ -88,3 +88,5 @@ keymap("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q
 vim.keymap.set("n", "<leader>we", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
 vim.cmd('abb Format lua vim.lsp.buf.format()')
+
+keymap("n", "<leader>o", "<cmd>NvimTreeToggle<CR>")

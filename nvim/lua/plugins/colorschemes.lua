@@ -1,5 +1,4 @@
 local M = {
-  { "martinsione/darkplus.nvim" },
   { "dgox16/oldworld.nvim" },
   { "navarasu/onedark.nvim" },
   { "folke/tokyonight.nvim" },
@@ -9,6 +8,7 @@ local M = {
   { "morhetz/gruvbox" },
   { "ishan9299/nvim-solarized-lua" },
   { "loctvl842/monokai-pro.nvim" },
+  { "Mofiqul/vscode.nvim" },
 }
 
 M.config = function()

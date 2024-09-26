@@ -10,7 +10,7 @@ vim.opt.number = true
 vim.opt.relativenumber = false
 
 -- set number column width to 2 {default 4}
-vim.opt.numberwidth = 2
+vim.opt.numberwidth = 4
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
@@ -64,7 +64,7 @@ vim.opt.pumblend = 0
 vim.opt.conceallevel = 3
 
 -- Status bar
-vim.opt.laststatus = 0
+vim.opt.laststatus = 2
 
 -- the encoding written to a file
 vim.opt.fileencoding = "utf-8"

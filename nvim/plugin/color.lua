@@ -3,8 +3,20 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
     -- VS CODE COLOR
     if vim.g.colors_name == "darkplus" then
-      vim.api.nvim_set_hl(0, "Comment", { fg = "#1e1e1e" })
       vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
+      vim.api.nvim_set_hl(0, "Comment", { fg = "#1e1e1e" })
+
+    -- VSCODE
+    elseif vim.g.colors_name == "vscode" then
+      vim.api.nvim_set_hl(0, "Comment", { fg = "#2f2f2f" })
+      vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
+      vim.api.nvim_set_hl(0, "LineNr", { fg = "#2f2f2f" })
+
+    -- oldworld
+    elseif vim.g.colors_name == "oldworld" then
+      vim.api.nvim_set_hl(0, "Comment", { fg = "#2f2f2f" })
+      vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
+      vim.api.nvim_set_hl(0, "LineNr", { fg = "#2f2f2f" })
 
     -- Onedark
     elseif vim.g.colors_name == "onedark" then
@@ -12,21 +24,28 @@ vim.api.nvim_create_autocmd("ColorScheme", {
       vim.api.nvim_set_hl(0, "normal_mode", { bg = "#e06c75", fg = "#000000" })
       vim.api.nvim_set_hl(0, "sep",         { fg = "#e06c75", bg = "#282c34" })
       vim.api.nvim_set_hl(0, "stl",         { fg = "#e06c75", bg = "#282c34" })
-      vim.api.nvim_set_hl(0, "Comment", { fg = "#2c313a", italic = true })
+      -- vim.api.nvim_set_hl(0, "Comment", { fg = "#2c313a", italic = true })
+      -- vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
+      vim.api.nvim_set_hl(0, "Comment", { fg = "#222222", italic = true })
       vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
       -- vim.api.nvim_set_hl(0, "StatusLine", { fg = "#7c879c", bg = "#1d2026" })
       vim.api.nvim_set_hl(0, "StatusLine", { fg = "#7c879c", bg = "none" })
-      vim.api.nvim_set_hl(0, "LineNr", { fg = "#2c313a" })
+      -- vim.api.nvim_set_hl(0, "LineNr", { fg = "#2c313a" })
+      vim.api.nvim_set_hl(0, "LineNr", { fg = "#121212" })
       vim.api.nvim_set_hl(0, "Pmenu", { bg = "#16181d" })
-      vim.api.nvim_set_hl(0, "Normal", { bg = "#21252b", fg = "#abb2bf" })
+      -- vim.api.nvim_set_hl(0, "Normal", { bg = "#21252b", fg = "#abb2bf" })
+      vim.api.nvim_set_hl(0, "Normal", { bg = "#000000", fg = "#abb2bf" })
       -- vim.api.nvim_set_hl(0, "NormalNC", { bg = "#282c34" })
       vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#1f2329" })
-      vim.api.nvim_set_hl(0, "SignColumn", { bg = "#1f2329" })
+      -- vim.api.nvim_set_hl(0, "SignColumn", { bg = "#1f2329" })
+      vim.api.nvim_set_hl(0, "SignColumn", { bg = "#000000" })
       vim.api.nvim_set_hl(0, "CurSearch", { bg = "#e06c75", fg = "#000000" })
       vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#ffffff" })
       vim.api.nvim_set_hl(0, "Search", { fg = "#e06c75" })
-      vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "#1f2329", fg = "#1f2329" })
-      vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1f2329" })
+      -- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "#1f2329", fg = "#1f2329" })
+      vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "#000000", fg = "#1f2329" })
+      -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1f2329" })
+      vim.api.nvim_set_hl(0, "CursorLine", { bg = "#000000" })
       vim.api.nvim_set_hl(0, "MatchParen", { underline = true, fg = "#e06c75", })
 
       -- Default edit
@@ -56,13 +75,29 @@ vim.api.nvim_create_autocmd("ColorScheme", {
       vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#ffffff" })
       vim.api.nvim_set_hl(0, "Search", { fg = "#e06c75" })
       vim.api.nvim_set_hl(0, "WildMenu", { fg = "#000000", bg = "#abb2bf" })
-      vim.api.nvim_set_hl(0, "Pmenu", { fg = "#abb2bf", bg = "#000000" })
-      vim.api.nvim_set_hl(0, "PmenuSel", { fg = "#000000", bg = "#abb2bf" })
+      -- vim.api.nvim_set_hl(0, "Pmenu", { fg = "#abb2bf", bg = "#000000" })
+      -- vim.api.nvim_set_hl(0, "PmenuSel", { fg = "#000000", bg = "#abb2bf" })
 
     -- Tokyonight
-    elseif vim.g.colors_name == "tokyonight" then
-      vim.api.nvim_set_hl(0, "Comment", { fg = "#ffffff" })
+    elseif vim.g.colors_name == "tokyonight-storm" then
+      vim.api.nvim_set_hl(0, "Comment", { fg = "#30364f" })
       vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
+      vim.api.nvim_set_hl(0, "LineNr", { fg = "#30364f" })
+      vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#7aa2f7" })
+
+    elseif vim.g.colors_name == "tokyonight-night" then
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+      vim.api.nvim_set_hl(0, "Comment", { fg = "#292b3d" })
+      vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
+      vim.api.nvim_set_hl(0, "LineNr", { fg = "#1f202e" })
+      vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#bb9af7" })
+      vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
+      vim.api.nvim_set_hl(0, "Pmenu", { bg = "#0a0b0f" })
+      vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#bb9af7", fg = "#000000" })
+      vim.api.nvim_set_hl(0, "normal_mode", { bg = "#bb9af7", fg = "#000000" })
+      vim.api.nvim_set_hl(0, "sep", { fg = "#bb9af7", bg = "#1f202e" })
+      vim.api.nvim_set_hl(0, "stl", { fg = "#bb9af7", bg = "#1f202e" })
 
     -- Solarized
     elseif vim.g.colors_name == "solarized" and vim.o.background == "dark" then
@@ -121,5 +156,5 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   end,
 })
 
-vim.cmd.colorscheme "solarized"
-vim.opt.background = "light"
+vim.cmd.colorscheme "onedark"
+vim.opt.background = "dark"
