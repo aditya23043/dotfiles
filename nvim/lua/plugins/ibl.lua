@@ -8,7 +8,7 @@ local M = {
     local highlight = { "iblHighlighted" }
     local hooks = require "ibl.hooks"
     hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-			vim.api.nvim_set_hl(0, "iblHighlighted", { fg = "#1d1d1d" })
+			vim.api.nvim_set_hl(0, "iblHighlighted", { fg = "#242729" })
     end)
     require("ibl").setup {
       indent = {

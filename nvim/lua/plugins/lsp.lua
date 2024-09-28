@@ -28,7 +28,7 @@ local M = {
       local servers = {
         rust_analyzer = {},
         bashls = {},
-        asm_lsp = {},
+        -- asm_ls = {},
         denols = {},
         -- pyright = {},
         lua_ls = {
@@ -55,7 +55,7 @@ local M = {
           filetypes = { "c", "cpp", },
         },
 
-        htmx = {},
+        -- htmx = {},
 
         -- ltex = {},
         jdtls = {},
@@ -194,7 +194,7 @@ local M = {
           verilog = { "verible" },
           html = { "htmlbeautifier" },
           css = { "prettier" },
-          asm = { "asmfmt" },
+          -- asm = { "asmfmt" },
         },
       })
 
