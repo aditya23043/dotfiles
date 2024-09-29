@@ -52,7 +52,7 @@ local M = {
         },
         clangd = {
           init_options = { clangdFileStatus = true },
-          filetypes = { "c", "cpp", },
+          filetypes = { "c", "cpp", "java" },
         },
 
         -- htmx = {},
@@ -62,7 +62,9 @@ local M = {
         ast_grep = {
           default_config = {
             single_file_support = true,
-          }
+          },
+          filetypes = { "c", "cpp", "java" },
+          root_dir = lspconfig.util.find_git_ancestor
         },
         gopls = {},
         biome = {

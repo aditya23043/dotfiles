@@ -7,7 +7,10 @@ vim.g.have_nerd_font = false
 vim.opt.number = true
 
 -- set relative numbered lines
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
+
+-- set number column width to 2 {default 4}
+vim.opt.numberwidth = 4
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
@@ -27,7 +30,7 @@ vim.opt.expandtab = true
 -- the number of spaces inserted for each indentation
 vim.opt.shiftwidth = 2
 
--- insert 4 spaces for a tab
+-- insert 2 spaces for a tab
 vim.opt.tabstop = 2
 
 -- Sync clipboard between OS and Neovim.
@@ -89,21 +92,21 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = "yes"
 
 -- Decrease update time
-vim.opt.updatetime = 100
+vim.opt.updatetime = 500
 
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
-vim.opt.timeoutlen = 100
+vim.opt.timeoutlen = 500
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- Sets how neovim will display certain whitespace characters in the editor.-- Sets how neovim will display certain whitespace characters in the editor. -- Sets how neovim will display certain whitespace characters in the editor.
-
-vim.opt.list = true
--- vim.opt.listchars = "tab:»,trail:·,nbsp:␣"
-vim.opt.listchars = { trail = "", eol = "󱞦", nbsp = "␣", lead = "", extends = "", precedes = "", tab = "  " }
+-- Sets how neovim will display certain whitespace characters in the editor.
+--  See `:help 'list'`
+--  and `:help 'listchars'`
+vim.opt.list = false
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
