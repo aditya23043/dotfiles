@@ -30,7 +30,7 @@ keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 keymap("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", opts)
 
 -- Move right easily in insert mode
-keymap("i", "<C-l>", "<right>", opts)
+-- keymap("i", "<C-l>", "<right>", opts)
 
 -- Buffer
 keymap("n", "<M-j>", ":bnext<CR>", opts)
@@ -91,3 +91,4 @@ vim.cmd('abb Format lua vim.lsp.buf.format()')
 
 keymap("n", "<leader>o", "<cmd>NvimTreeToggle<CR>")
 -- keymap("n", "<leader>o", "<cmd>Neotree toggle<CR>")
+keymap("n", "<C-f>", "<cmd>Oil<CR>")

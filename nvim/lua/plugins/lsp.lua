@@ -59,13 +59,13 @@ local M = {
 
         -- ltex = {},
         jdtls = {},
-        ast_grep = {
-          default_config = {
-            single_file_support = true,
-          },
-          filetypes = { "c", "cpp", "java" },
-          root_dir = lspconfig.util.find_git_ancestor
-        },
+        -- ast_grep = {
+        --   default_config = {
+        --     single_file_support = true,
+        --   },
+        --   filetypes = { "c", "cpp", "java" },
+        --   root_dir = lspconfig.util.find_git_ancestor
+        -- },
         gopls = {},
         biome = {
           default_config = {
@@ -91,14 +91,14 @@ local M = {
             -- [vim.diagnostic.severity.WARN] = '',
             -- [vim.diagnostic.severity.INFO] = '',
             -- [vim.diagnostic.severity.HINT] = ''
-            [vim.diagnostic.severity.ERROR] = '>>',
-            [vim.diagnostic.severity.WARN] = '>>',
-            [vim.diagnostic.severity.INFO] = '>>',
-            [vim.diagnostic.severity.HINT] = '>>'
+            [vim.diagnostic.severity.ERROR] = '*',
+            [vim.diagnostic.severity.WARN] = '*',
+            [vim.diagnostic.severity.INFO] = '*',
+            [vim.diagnostic.severity.HINT] = '*'
           }
         },
 
-        virtual_text = true,
+        virtual_text = false,
         update_in_insert = false,
         underline = true,
         severity_sort = true,

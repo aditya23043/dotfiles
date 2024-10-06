@@ -150,9 +150,12 @@ vim.api.nvim_create_autocmd("ColorScheme", {
       vim.api.nvim_set_hl(0, "CursorLine", { bg = "#181a1b" })
       vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#282828" })
-      vim.api.nvim_set_hl(0, "Pmenu", { bg = "#282828" })
+      vim.api.nvim_set_hl(0, "Pmenu", { bg = "#141617" })
       vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#ddc7a1", fg = "#000000" })
       vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = "#242729" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#141617" })
+      vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#141617", fg="#ddc7a1" })
+      vim.api.nvim_set_hl(0, "IblScope", { bg = "none", fg="#ddc7a1" })
     end
   end,
 })

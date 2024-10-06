@@ -1,7 +1,8 @@
 -- local border = { "┏",  "━",  "┓",  "┃",  "┛",  "━",  "┗",  "┃", }
 -- local border = { "╔",  "═",  "╗",  "║",  "╝",  "═",  "╚",  "║", }
-local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+-- local border2 = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 -- local border = { "🭽", "▔", "🭾", "▕", "🭿", "▁", "🭼", "▏" }
+local border1 = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
 
 local M = {
 	"hrsh7th/nvim-cmp",
@@ -90,11 +91,11 @@ function M.config()
 					luasnip.expand_or_jump()
 				end
 			end, { "i", "s" }),
-			["<C-h>"] = cmp.mapping(function()
-				if luasnip.locally_jumpable(-1) then
-					luasnip.jump(-1)
-				end
-			end, { "i", "s" }),
+			-- ["<C-h>"] = cmp.mapping(function()
+			-- 	if luasnip.locally_jumpable(-1) then
+			-- 		luasnip.jump(-1)
+			-- 	end
+			-- end, { "i", "s" }),
 		}),
 		sources = {
 			{ name = "nvim_lsp" },
@@ -106,12 +107,12 @@ function M.config()
 		},
 		window = {
 			completion = {
-				-- border = border,
-				-- scrollbar = "║",
+				border = border1,
+				scrollbar = "|",
 			},
 			documentation = {
-				-- border = border,
-				-- scrollbar = "║",
+				border = border1,
+				scrollbar = "|",
 			},
 		},
 		formatting = {

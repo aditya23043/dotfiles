@@ -130,3 +130,9 @@ vim.opt.cindent = true
 -- NETRW
 vim.g.netrw_banner = 1
 vim.g.netrw_mouse = 2
+
+
+-- NOTE: Auto commands
+vim.api.nvim_create_autocmd({"CursorHold"}, {
+  command = "lua vim.diagnostic.open_float()",
+})

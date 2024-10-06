@@ -9,6 +9,7 @@ local M = {
   { "ishan9299/nvim-solarized-lua" },
   { "loctvl842/monokai-pro.nvim" },
   { "Mofiqul/vscode.nvim" },
+  { "ellisonleao/gruvbox.nvim" }
 }
 
 M.config = function()
