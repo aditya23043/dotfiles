@@ -1,63 +1,207 @@
-" PLUGINS
+" (use `gx` keybinding to open the link)
+
+let mapleader=' '
+let maplocalleader = ' '
+
+filetype on
+syntax on
+set autoindent autoread background=dark
+set backspace=indent,eol,start belloff=all
+set display=lastline encoding=utf-8 hidden
+set history=10000 incsearch
+set nojoinspaces laststatus=2 ruler
+set showcmd smarttab nostartofline
+set switchbuf=uselast wildmenu "wildoptions=pum,tagfile
+
+set number
+
+set mouse=a
+
+set noshowmode
+
+set clipboard=unnamedplus
+
+set breakindent
+
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+set ignorecase
+set smartcase
+
+set signcolumn=yes
+
+set updatetime=250
+
+" Decrease mapped sequence wait time
+" Displays vim-which-key sooner
+set timeoutlen=1000
+set ttimeoutlen=50
+
+set splitright
+set splitbelow
+
+set list
+set listchars=tab:»\ ,trail:·,nbsp:␣,lead:·
+
+set fillchars=vert:│,fold:─,foldopen:·
+
+" Show which line your cursor is on
+set cursorline
+
+" Minimal number of screen lines to keep above and below the cursor
+set scrolloff=10
+
+
+" [[ Basic Keymaps ]]
+
+set hlsearch
+nnoremap <Esc> :nohlsearch<CR>
+
+tnoremap <Esc><Esc> <C-\><C-n>
+
+nnoremap <expr> <silent> k v:count == 0 ? 'gk' : 'k'
+nnoremap <expr> <silent> j v:count == 0 ? 'gj' : 'j'
+
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-j> <C-w><C-j>
+  nnoremap <C-k> <C-w><C-k>
+
+" [[ Install `vim-plug` plugin manager ]]
+"    See https://github.com/junegunn/vim-plug/ for more info
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" [[ Install plugins ]]
+"  To check the current status of your plugins, run
+"    :PlugStatus
+"
+"  To update plugins you can run
+"    :PlugUpdate
+"
 call plug#begin()
 
-Plug 'honza/vim-snippets'
+" Detect tabstop and shiftwidth automatically
+Plug 'tpope/vim-sleuth'
+
+" "gc" to comment visual regions/lines
+Plug 'tpope/vim-commentary'
+
+" for bracket auto completion
+Plug 'tpope/vim-surround'
+
+" Gruvbox
+Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
-Plug 'dhruvasagar/vim-table-mode'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'lifepillar/vim-gruvbox8'
+Plug 'tinted-theming/base16-vim'
+
+" Seoul 256
+Plug 'junegunn/seoul256.vim'
+
+" Solarized
 Plug 'ericbn/vim-solarized'
-Plug 'tpope/vim-sensible'
+
+" Adds git related signs to the gutter
+" Plug 'airblade/vim-gitgutter'
+
+" Useful plugin to show you pending keybinds.
+Plug 'liuchengxu/vim-which-key'
+
+" Fuzzy Finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Colorscheme
+Plug 'ghifarit53/tokyonight-vim'
+
+" Completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-snippets'
+
+" Status bar (i dont think i need it but lets check it out cuz why not
+" Plug 'itchyny/lightline.vim'
+
+" Enhanced syntax highlighting
+Plug 'cacharle/vim-syntax-extra'
+
+" FOCUS
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
+
+" Rainbow parenthesis
+Plug 'junegunn/rainbow_parentheses.vim'
 
 call plug#end()
 
-let mapleader = " "
-set ignorecase
-set smartcase
-set updatetime=500
-set timeoutlen=500
+
+" [[ Configure plugins ]]
+" Set colorscheme
+set termguicolors
+let g:tokyonight_style = 'night'  " available: night, storm
+let g:tokyonight_enable_italic = 0
+let g:gruvbox_italic=1
+colorscheme gruvbox
+hi Comment guifg=#585858
+hi Whitespace guifg=#484848
+hi LineNr guifg=#383838
+hi SpecialKey guifg=#383838
+hi LimelightDim guifg=#484848
+let g:limelight_conceal_guifg = '#484848'
+
+
+set completeopt=menuone,noinsert,noselect,preview
+
+
+" COC Config
+" https://raw.githubusercontent.com/neoclide/coc.nvim/master/doc/coc-example-config.vim
+
+" May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
+" utf-8 byte sequence
 set encoding=utf-8
-set nocompatible
-set number
-set tabstop=2
-set shiftwidth=2
-set noexpandtab
-set breakindent
-set smartindent
-set noundofile
-set pumheight=10
-set laststatus=3
-set cursorline
+" Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
-set noswapfile
-set termguicolors
-set nowrap
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved
 set signcolumn=yes
-set splitright
-set splitbelow
-set title
-set nospell
-set cindent
-set mouse=a
-syntax enable
 
-filetype plugin on
-filetype indent on
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-colo gruvbox-material
-set background=dark
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-hi comment guifg=#444647
-hi LineNr guifg=#444647
-hi CursorLineNr guifg=#ddc7a1
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-" COC CONFIGURATION
+" Use <c-space> to trigger completion
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "<CR>"
-inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : "<TAB>"
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>"
-
-" diagnostics
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
@@ -79,7 +223,7 @@ function! ShowDocumentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor
-" autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
@@ -87,6 +231,14 @@ nmap <leader>rn <Plug>(coc-rename)
 " Formatting selected code
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s)
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 
 " Applying code actions to the selected code block
 " Example: `<leader>aap` for current paragraph
@@ -118,6 +270,16 @@ xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
+
+" Remap <C-f> and <C-b> to scroll float windows/popups
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
 
 " Use CTRL-S for selections ranges
 " Requires 'textDocument/selectionRange' support of language server
@@ -156,12 +318,11 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-" COC SNIPPETS CONFIG
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-l>'
+" status bar config
+" let g:lightline = {
+"             \ "colorscheme": "seoul256",
+"             \ }
+let g:seoul256_background = 236
 
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-h>'
-
-" Use <leader>x for convert visual selected code to snippet
-xmap <leader>x  <Plug>(coc-convert-snippet)
+" The line beneath this is called `modeline`. See `:help modeline`
+" vim: ts=2 sts=2 sw=2 et
