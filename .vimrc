@@ -15,6 +15,9 @@ set switchbuf=uselast wildmenu "wildoptions=pum,tagfile
 
 set number
 
+set tabline="%F %!tab"
+set showtabline=2
+
 set mouse=a
 
 set noshowmode
@@ -49,8 +52,8 @@ set listchars=tab:│\ ,trail:·,nbsp:␣
 set fillchars=vert:│,fold:─,foldopen:·
 
 " folds
-set foldmethod=marker
-set foldmarker={,}
+" set foldmethod=marker
+" set foldmarker={,}
 
 " Show which line your cursor is on
 set cursorline
@@ -107,15 +110,17 @@ Plug 'tpope/vim-surround'
 " openscad
 Plug 'sirtaj/vim-openscad'
 
-" Gruvbox
+" Colorschemes
 Plug 'morhetz/gruvbox'
-Plug 'sainnhe/gruvbox-material'
-Plug 'lifepillar/vim-gruvbox8'
-Plug 'tinted-theming/base16-vim'
-Plug 'rose-pine/vim'
-
-" Oil.nvim but for vim
-Plug 'stevearc/oil.nvim'
+" Plug 'sainnhe/gruvbox-material'
+" Plug 'ayu-theme/ayu-vim'
+Plug 'rose-pine/vim', {'as': 'rosepine'}
+Plug 'cocopon/iceberg.vim'
+Plug 'nordtheme/vim', {'as': 'nord'}
+Plug 'rmehri01/onenord.nvim'
+Plug 'davidosomething/vim-colors-meh'
+Plug 'nanotech/jellybeans.vim'
+" Plug 'rakr/vim-one'
 
 " Seoul 256
 Plug 'junegunn/seoul256.vim'
@@ -126,12 +131,9 @@ Plug 'ericbn/vim-solarized'
 " Adds git related signs to the gutter
 " Plug 'airblade/vim-gitgutter'
 
-" Useful plugin to show you pending keybinds.
-Plug 'liuchengxu/vim-which-key'
-
 " Fuzzy Finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 
 " Colorscheme
@@ -163,13 +165,30 @@ set termguicolors
 let g:tokyonight_style = 'night'  " available: night, storm
 let g:tokyonight_enable_italic = 0
 let g:gruvbox_italic=1
-colorscheme gruvbox
-hi Comment guifg=#585858
-hi Whitespace guifg=#585858
-hi LineNr guifg=#383838
-hi SpecialKey guifg=#585858
-hi LimelightDim guifg=#484848
-let g:limelight_conceal_guifg = '#484848'
+
+colorscheme jellybeans
+
+if g:colors_name == "gruvbox"
+  hi Comment guifg=#585858
+  hi Whitespace guifg=#585858
+  hi LineNr guifg=#383838
+  hi SpecialKey guifg=#585858
+  hi LimelightDim guifg=#484848
+  let g:limelight_conceal_guifg = '#484848'
+elseif g:colors_name == "rosepine"
+  hi Comment guifg=#585858
+elseif g:colors_name == "jellybeans"
+  hi Comment guifg=#353535
+  hi StatusLine guibg=#353535 guifg=#999999
+  hi TabLineSel guibg=#353535 guifg=#999999
+  hi TabLine guibg=#252525 guifg=#444444
+  hi TabLineFill guibg=#252525 guifg=#444444
+  hi LineNr guifg=#333333 guibg=#252525
+  hi CursorLineNr guibg=#252525 guifg=#999999
+  hi CocInlayHint guibg=#252525 guifg=#555555
+  hi Search guifg=#f7768e
+endif
+
 
 
 set completeopt=menuone,noinsert,noselect,preview
@@ -312,10 +331,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
-" Add (Neo)Vim's native statusline support
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline
-set statusline^=%f%=%{coc#status()}%{get(b:,'coc_current_function','')}
+set statusline=%r\ %F\ %y%m\ %p%%%=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics
@@ -340,6 +356,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 "             \ "colorscheme": "seoul256",
 "             \ }
 let g:seoul256_background = 236
+
 
 " The line beneath this is called `modeline`. See `:help modeline`
 " vim: ts=2 sts=2 sw=2 et
