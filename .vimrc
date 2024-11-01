@@ -43,9 +43,14 @@ set splitright
 set splitbelow
 
 set list
-set listchars=tab:»\ ,trail:·,nbsp:␣,lead:·
+" set listchars=tab:»\ ,trail:·,nbsp:␣,lead:·
+set listchars=tab:│\ ,trail:·,nbsp:␣
 
 set fillchars=vert:│,fold:─,foldopen:·
+
+" folds
+set foldmethod=marker
+set foldmarker={,}
 
 " Show which line your cursor is on
 set cursorline
@@ -56,8 +61,12 @@ set scrolloff=10
 
 " [[ Basic Keymaps ]]
 
+nnoremap <C-o> <cmd>CtrlPCurWD<CR>
+
 set hlsearch
 nnoremap <Esc> :nohlsearch<CR>
+
+nnoremap <C-]> <cmd>tabnext<CR>
 
 tnoremap <Esc><Esc> <C-\><C-n>
 
@@ -67,7 +76,7 @@ nnoremap <expr> <silent> j v:count == 0 ? 'gj' : 'j'
 nnoremap <C-h> <C-w><C-h>
 nnoremap <C-l> <C-w><C-l>
 nnoremap <C-j> <C-w><C-j>
-  nnoremap <C-k> <C-w><C-k>
+nnoremap <C-k> <C-w><C-k>
 
 " [[ Install `vim-plug` plugin manager ]]
 "    See https://github.com/junegunn/vim-plug/ for more info
@@ -95,11 +104,18 @@ Plug 'tpope/vim-commentary'
 " for bracket auto completion
 Plug 'tpope/vim-surround'
 
+" openscad
+Plug 'sirtaj/vim-openscad'
+
 " Gruvbox
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'tinted-theming/base16-vim'
+Plug 'rose-pine/vim'
+
+" Oil.nvim but for vim
+Plug 'stevearc/oil.nvim'
 
 " Seoul 256
 Plug 'junegunn/seoul256.vim'
@@ -116,6 +132,7 @@ Plug 'liuchengxu/vim-which-key'
 " Fuzzy Finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Colorscheme
 Plug 'ghifarit53/tokyonight-vim'
@@ -148,9 +165,9 @@ let g:tokyonight_enable_italic = 0
 let g:gruvbox_italic=1
 colorscheme gruvbox
 hi Comment guifg=#585858
-hi Whitespace guifg=#484848
+hi Whitespace guifg=#585858
 hi LineNr guifg=#383838
-hi SpecialKey guifg=#383838
+hi SpecialKey guifg=#585858
 hi LimelightDim guifg=#484848
 let g:limelight_conceal_guifg = '#484848'
 
@@ -298,7 +315,7 @@ command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.org
 " Add (Neo)Vim's native statusline support
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+set statusline^=%f%=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics
