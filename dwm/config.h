@@ -11,12 +11,12 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrainsMono NFM:style=Bold:size=10" };
-static const char dmenufont[]       = "JetBrainsMono NFM:style=Bold:size=10";
-static const char norm_bg[] = "#141617";
+static const char *fonts[] = {"MesloLGSDZ Nerd Font Mono:style=Bold:size=10:antialias=true:autohint=true"};
+static const char dmenufont[] = {"MesloLGSDZ Nerd Font Mono:style=Bold:size=10:antialias=true:autohint=true"};
+static const char norm_bg[] = "#15161e";
 static const char norm_fg[] = "#888888";
-static const char sel_fg[]  = "#000000";
-static const char accent_col[] = "#7daea3";
+static const char sel_fg[] = "#000000";
+static const char accent_col[] = "#bb9af7";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { norm_fg, norm_bg,    norm_bg },
@@ -73,6 +73,7 @@ static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_r,      spawn,          SHCMD("xfce4-appfinder") },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_u,      spawn,          SHCMD("/home/adi/.config/dwm/scripts/init.sh") },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -85,7 +86,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },
 	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
+
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[3]} },
@@ -110,11 +111,11 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-    { 0, 							XF86XK_AudioLowerVolume, 	spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%; /home/adi/.config/dwm/bar.sh")},
-    { 0, 							XF86XK_AudioRaiseVolume, 	spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%; /home/adi/.config/dwm/bar.sh")},
-    { 0, 							XF86XK_AudioMute, 			spawn, SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle; /home/adi/.config/dwm/bar.sh")},
-    { 0, 							XF86XK_MonBrightnessUp, 	spawn, SHCMD("sudo ybacklight -inc 10%; /home/adi/.config/dwm/bar.sh")},
-    { 0, 							XF86XK_MonBrightnessDown, 	spawn, SHCMD("sudo ybacklight -dec 10%; /home/adi/.config/dwm/bar.sh")},
+    { 0, 							XF86XK_AudioLowerVolume, 	spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%; /home/adi/.config/dwm/scripts/bar.sh")},
+    { 0, 							XF86XK_AudioRaiseVolume, 	spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%; /home/adi/.config/dwm/scripts/bar.sh")},
+    { 0, 							XF86XK_AudioMute, 			spawn, SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle; /home/adi/.config/dwm/scripts/bar.sh")},
+    { 0, 							XF86XK_MonBrightnessUp, 	spawn, SHCMD("sudo ybacklight -inc 10%; /home/adi/.config/dwm/scripts/bar.sh")},
+    { 0, 							XF86XK_MonBrightnessDown, 	spawn, SHCMD("sudo ybacklight -dec 10%; /home/adi/.config/dwm/scripts/bar.sh")},
     { 0,              XF86XK_AudioPlay,              spawn, SHCMD("playerctl play-pause")},
 };
 

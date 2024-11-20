@@ -14,9 +14,46 @@ set showcmd smarttab nostartofline
 set switchbuf=uselast wildmenu "wildoptions=pum,tagfile
 
 set number
+set nowrap
 
-set tabline="%F %!tab"
+" set tabline=%t
 set showtabline=2
+
+set tabline=%!MyTabLine()
+
+function MyTabLine()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    " select the highlighting
+    if i + 1 == tabpagenr()
+      let s ..= '%#TabLineSel#'
+    else
+      let s ..= '%#TabLine#'
+    endif
+
+    " set the tab page number (for mouse clicks)
+    let s ..= '%' .. (i + 1) .. 'T'
+
+    " the label is made by MyTabLabel()
+    let s ..= '  %{MyTabLabel(' .. (i + 1) .. ')}  '
+  endfor
+
+  " after the last tab fill with TabLineFill and reset tab page nr
+  let s ..= '%#TabLineFill#%T'
+
+  " right-align the label to close the current tab page
+  if tabpagenr('$') > 1
+    let s ..= '%=%#TabLine#%999Xclose'
+  endif
+
+  return s
+endfunction
+
+function MyTabLabel(n)
+  let buflist = tabpagebuflist(a:n)
+  let winnr = tabpagewinnr(a:n)
+  return bufname(buflist[winnr - 1])
+endfunction
 
 set mouse=a
 
@@ -26,8 +63,8 @@ set clipboard=unnamedplus
 
 set breakindent
 
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
 set ignorecase
@@ -66,10 +103,16 @@ set scrolloff=10
 
 nnoremap <C-o> <cmd>CtrlPCurWD<CR>
 
+inoremap <C-j> <Right>
+
 set hlsearch
 nnoremap <Esc> :nohlsearch<CR>
 
-nnoremap <C-]> <cmd>tabnext<CR>
+nnoremap <space>m <cmd>tabnext<CR>
+nnoremap <space>n <cmd>tabprev<CR>
+" nnoremap <space>e <cmd>NERDTreeToggle<CR>
+nnoremap <space>e <cmd>Ex<CR>
+nnoremap <S-j> <cmd>Ex<CR>
 
 tnoremap <Esc><Esc> <C-\><C-n>
 
@@ -98,6 +141,12 @@ endif
 "
 call plug#begin()
 
+" Auto Pair
+Plug 'jiangmiao/auto-pairs'
+
+" nerd tree
+" Plug 'preservim/nerdtree'
+
 " Detect tabstop and shiftwidth automatically
 Plug 'tpope/vim-sleuth'
 
@@ -110,20 +159,18 @@ Plug 'tpope/vim-surround'
 " openscad
 Plug 'sirtaj/vim-openscad'
 
-" Colorschemes
 Plug 'morhetz/gruvbox'
-" Plug 'sainnhe/gruvbox-material'
-" Plug 'ayu-theme/ayu-vim'
-Plug 'rose-pine/vim', {'as': 'rosepine'}
+Plug 'sainnhe/gruvbox-material'
+" Plug 'rose-pine/vim', {'as': 'rosepine'}
 Plug 'cocopon/iceberg.vim'
 Plug 'nordtheme/vim', {'as': 'nord'}
-Plug 'rmehri01/onenord.nvim'
-Plug 'davidosomething/vim-colors-meh'
+" Plug 'rmehri01/onenord.nvim'
 Plug 'nanotech/jellybeans.vim'
+Plug 'ghifarit53/tokyonight-vim'
 " Plug 'rakr/vim-one'
-
-" Seoul 256
-Plug 'junegunn/seoul256.vim'
+" Plug 'junegunn/seoul256.vim'
+" Plug 'ayu-theme/ayu-vim'
+Plug 'Everblush/everblush.vim'
 
 " Solarized
 Plug 'ericbn/vim-solarized'
@@ -136,12 +183,10 @@ Plug 'ericbn/vim-solarized'
 " Plug 'junegunn/fzf.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 
-" Colorscheme
-Plug 'ghifarit53/tokyonight-vim'
-
 " Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-snippets'
+Plug 'honza/vim-snippets'
 
 " Status bar (i dont think i need it but lets check it out cuz why not
 " Plug 'itchyny/lightline.vim'
@@ -160,13 +205,12 @@ call plug#end()
 
 
 " [[ Configure plugins ]]
-" Set colorscheme
 set termguicolors
 let g:tokyonight_style = 'night'  " available: night, storm
 let g:tokyonight_enable_italic = 0
 let g:gruvbox_italic=1
 
-colorscheme jellybeans
+colorscheme tokyonight
 
 if g:colors_name == "gruvbox"
   hi Comment guifg=#585858
@@ -174,9 +218,37 @@ if g:colors_name == "gruvbox"
   hi LineNr guifg=#383838
   hi SpecialKey guifg=#585858
   hi LimelightDim guifg=#484848
+  hi TabLineFill guibg=#282828
+  hi StatusLine guifg=#3c3836 guibg=#ddc7a1
   let g:limelight_conceal_guifg = '#484848'
+elseif g:colors_name == "retrobox"
+elseif g:colors_name == "tokyonight"
+  hi TabLineSel guifg=#a9b1d6 guibg=#32344a
+  hi TabLine guibg=#232433 guifg=#32344a
+  hi LineNr guibg=#232433 guifg=#32344a
+  hi CocInlayHint guibg=NONE guifg=#32344a
+  hi CursorLine guibg=NONE
 elseif g:colors_name == "rosepine"
   hi Comment guifg=#585858
+elseif g:colors_name == "habamax"
+  hi Comment guifg=#343434
+  hi LineNr guifg=#343434
+  hi TabLineFill guibg=#1c1c1c
+  hi CocInlayHint guifg=#343434
+  hi CursorLine guibg=#1c1c1c
+  hi Pmenu guibg=#111111
+elseif g:colors_name == "gruvbox-material"
+  hi Comment guifg=#484848
+  hi LineNr guifg=#282828
+  hi CursorLineNr guifg=#ddc7a1
+  hi Normal guibg=#141617
+  hi TabLineSel guibg=#bcab8f guifg=#000000
+  hi TabLine guibg=#282828 guifg=#555555
+  hi TabLineFill guibg=#282828 guifg=#444444
+  hi StatusLine guibg=NONE guifg=#ddc7a1
+  hi CocCodeLens guibg=#141617 guifg=#484848
+  hi Whitespace guibg=#141617 guifg=#484848
+  set nocursorline
 elseif g:colors_name == "jellybeans"
   hi Comment guifg=#353535
   hi StatusLine guibg=#353535 guifg=#999999
@@ -186,7 +258,13 @@ elseif g:colors_name == "jellybeans"
   hi LineNr guifg=#333333 guibg=#252525
   hi CursorLineNr guibg=#252525 guifg=#999999
   hi CocInlayHint guibg=#252525 guifg=#555555
-  hi Search guifg=#f7768e
+  hi CocErrorSign guibg=#353535 guifg=#e06c75
+  " hi CocCodeLens guibg=#252525 guifg=#555555
+  hi CocCodeLens guibg=NONE guifg=#353535
+  hi EndOfBuffer guibg=NONE guifg=#353535
+  hi Search guifg=#e06c75
+elseif g:colors_name == "nord"
+  hi CocCodeLens guifg=#4b5468
 endif
 
 
@@ -203,6 +281,9 @@ set encoding=utf-8
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
+set noswapfile
+set undodir=~/.vim/undodir
+set undofile
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved
@@ -215,8 +296,9 @@ set signcolumn=yes
 " other plugin before putting this into your config
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
+      \ "\<Tab>"
+      " \ CheckBackspace() ? "\<Tab>" :
+      " \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
@@ -337,7 +419,7 @@ set statusline=%r\ %F\ %y%m\ %p%%%=%{coc#status()}%{get(b:,'coc_current_function
 " Show all diagnostics
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
 nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
@@ -349,7 +431,7 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+" nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " status bar config
 " let g:lightline = {
@@ -357,6 +439,8 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 "             \ }
 let g:seoul256_background = 236
 
+" ocaml
+set rtp^="/home/adi/.opam/default/share/ocp-indent/vim"
 
 " The line beneath this is called `modeline`. See `:help modeline`
 " vim: ts=2 sts=2 sw=2 et
