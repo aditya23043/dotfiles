@@ -35,7 +35,7 @@ function MyTabLine()
     let s ..= '%' .. (i + 1) .. 'T'
 
     " the label is made by MyTabLabel()
-    let s ..= '  %{MyTabLabel(' .. (i + 1) .. ')}  '
+    let s ..= ' %M %{MyTabLabel(' .. (i + 1) .. ')}  '
   endfor
 
   " after the last tab fill with TabLineFill and reset tab page nr
@@ -43,7 +43,7 @@ function MyTabLine()
 
   " right-align the label to close the current tab page
   if tabpagenr('$') > 1
-    let s ..= '%=%#TabLine#%999Xclose'
+    let s ..= '%=%#TabLine#%999X close '
   endif
 
   return s
@@ -52,7 +52,9 @@ endfunction
 function MyTabLabel(n)
   let buflist = tabpagebuflist(a:n)
   let winnr = tabpagewinnr(a:n)
-  return bufname(buflist[winnr - 1])
+  " return bufname(buflist[winnr - 1])
+  let fullpath = bufname(buflist[winnr - 1])
+  return fnamemodify(fullpath, ':t') " ':t' gives just the filename
 endfunction
 
 set mouse=a
@@ -63,8 +65,8 @@ set clipboard=unnamedplus
 
 set breakindent
 
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 
 set ignorecase
@@ -84,7 +86,8 @@ set splitbelow
 
 set list
 " set listchars=tab:»\ ,trail:·,nbsp:␣,lead:·
-set listchars=tab:│\ ,trail:·,nbsp:␣
+" set listchars=tab:│\ ,trail:·,nbsp:␣
+set listchars=tab:⇥\ ,trail:·,nbsp:␣
 
 set fillchars=vert:│,fold:─,foldopen:·
 
@@ -156,6 +159,12 @@ Plug 'tpope/vim-commentary'
 " for bracket auto completion
 Plug 'tpope/vim-surround'
 
+" Tmux nav
+Plug 'christoomey/vim-tmux-navigator'
+
+" Color codes
+Plug 'lilydjwg/colorizer'
+
 " openscad
 Plug 'sirtaj/vim-openscad'
 
@@ -171,7 +180,8 @@ Plug 'ghifarit53/tokyonight-vim'
 " Plug 'junegunn/seoul256.vim'
 " Plug 'ayu-theme/ayu-vim'
 Plug 'Everblush/everblush.vim'
-
+Plug 'tomasiser/vim-code-dark'
+Plug 'vv9k/vim-github-dark'
 " Solarized
 Plug 'ericbn/vim-solarized'
 
@@ -210,7 +220,7 @@ let g:tokyonight_style = 'night'  " available: night, storm
 let g:tokyonight_enable_italic = 0
 let g:gruvbox_italic=1
 
-colorscheme tokyonight
+colorscheme iceberg
 
 if g:colors_name == "gruvbox"
   hi Comment guifg=#585858
@@ -222,6 +232,35 @@ if g:colors_name == "gruvbox"
   hi StatusLine guifg=#3c3836 guibg=#ddc7a1
   let g:limelight_conceal_guifg = '#484848'
 elseif g:colors_name == "retrobox"
+elseif g:colors_name == "iceberg"
+  hi Comment guifg=#33384d
+  hi LineNr guifg=#1f212e guibg=#161821
+  hi CocInlayHint guibg=#1f212e guifg=#33384d
+  hi Pmenu guibg=#0a0b0f
+  hi WildMenu guibg=#b4be82
+  hi MatchParen guibg=NONE guifg=#e06c75
+  hi SignColumn guibg=#161821
+  hi CursorLine guibg=#1f212e
+  hi CursorLineNr guibg=#0f1117
+  hi StatusLine guifg=#0f1117 guibg=#9a9ca5
+  hi StatusLineNC guibg=#303136
+elseif g:colors_name == "ghdark"
+  hi Ignore guifg=#343434
+  hi NonText guifg=#343434
+  hi WildMenu guibg=#e06c75
+  hi Normal guibg=#000000
+  hi CursorLineNr guibg=#161b22
+  hi Comment guifg=#242424
+  hi LineNr guifg=#121212
+  hi Pmenu guibg=#121212
+  hi CursorLine guibg=#121212
+  hi CursorLineNr guibg=#121212 guifg=#ecf2f8
+  hi Search guifg=#000000 guibg=#f97970
+  hi StatusLine guifg=#c6cdd5 guibg=#121212
+  hi StatusLineNC guifg=#555555 guibg=#000000
+  hi SignColumn guibg=#121212
+  hi TabLine guibg=#232323 cterm=NONE guifg=#444444
+  hi TabLineFill guifg=#232323
 elseif g:colors_name == "tokyonight"
   hi TabLineSel guifg=#a9b1d6 guibg=#32344a
   hi TabLine guibg=#232433 guifg=#32344a
@@ -432,15 +471,6 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
-" status bar config
-" let g:lightline = {
-"             \ "colorscheme": "seoul256",
-"             \ }
-let g:seoul256_background = 236
-
-" ocaml
-set rtp^="/home/adi/.opam/default/share/ocp-indent/vim"
 
 " The line beneath this is called `modeline`. See `:help modeline`
 " vim: ts=2 sts=2 sw=2 et
