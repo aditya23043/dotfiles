@@ -1,6 +1,6 @@
 {
   "suggest.labelMaxLength": 50,
-  "suggest.snippetIndicator": " ",
+  "suggest.snippetIndicator": " 󰘦  ",
   "suggest.timeout": 5000,
   "suggest.triggerCompletionWait": 30,
   "suggest.removeDuplicateItems": true,
@@ -33,15 +33,15 @@
     "typeParameter": "",
     "default": ""
   },
-  "diagnostic.level": "hint",
+  "diagnostic.level": "error",
   "diagnostic.virtualText": true,
-  "diagnostic.virtualTextCurrentLineOnly": false,
+  "diagnostic.virtualTextCurrentLineOnly": true,
   "diagnostic.virtualTextPrefix": " ▸ ",
   "diagnostic.errorSign": "󰅜",
   "diagnostic.warningSign": "󰀦",
   "diagnostic.infoSign": "󰋼",
   "diagnostic.hintSign": "󰋗",
-  "diagnostic.displayByAle": true,
+  "diagnostic.displayByAle": false,
   "inlayHint.enable": true,
   "inlayHint.refreshOnInsertMode": true,
   "tree.closedIcon": "",
@@ -108,6 +108,7 @@
       }
     }
   ],
+  "snippets.userSnippetsDirectory": "~/.vim/snippets/",
   "snippets.ultisnips.enable": false,
   "snippets.snipmate.enable": true,
   "snippets.shortcut": "S",
@@ -171,6 +172,8 @@
     "vue-html": "html",
     "javascript": "javascriptreact"
   },
+  "html.filetypes": ["html", "php"],
+  "emmet.includeLanguages": {"html", "css", "php"};
   "imselect.defaultInput": "com.apple.keylayout.ABC",
   "eslint.packageManager": "pnpm",
   "eslint.run": "onSave",
@@ -260,13 +263,6 @@
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "javascript.format.semicolons": "insert",
   "angular.forceStrictTemplates": true,
-  "clangd.path": "clangd",
-  "clangd.arguments": [
-    "--clang-tidy",
-    "--completion-style=detailed",
-    "--fallback-style=google",
-    "--header-insertion=iwyu"
-  ],
   "go.goplsPath": "gopls",
   "go.checkForUpdates": "disabled",
   "go.goplsOptions": {
@@ -294,8 +290,8 @@
   },
   "rust-analyzer.server.path": "rust-analyzer",
   "rust-analyzer.lens.enable": true,
-  "rust-analyzer.lens.run.enable": false,
-  "rust-analyzer.lens.debug.enable": false,
+  "rust-analyzer.lens.run.enable": true,
+  "rust-analyzer.lens.debug.enable": true,
   "rust-analyzer.lens.references.adt.enable": true,
   "rust-analyzer.lens.implementations.enable": true,
   "rust-analyzer.lens.references.trait.enable": true,
@@ -342,11 +338,16 @@
   "java.maxConcurrentBuilds": 4,
   "java.signatureHelp.description.enabled": true,
   "java.codeGeneration.generateComments": true,
-  "java.saveActions.organizeImports": true,
-  "java.referencesCodeLens.enabled": true,
+  "java.saveActions.organizeImports": false,
+  "java.format.enabled": true,
+  "java.referencesCodeLens.enabled": false,
   "java.implementationsCodeLens.enabled": true,
   "java.typeHierarchy.lazyLoad": true,
   "java.compile.nullAnalysis.mode": "automatic",
+  "java.jdt.ls.vmargs": "-Xmx2G -Xms1G",
+  "java.workspace.library": [
+    "/home/adi/repo/AngryBirds/src"
+  ],
   "java.cleanup.actions": [
     "qualifyMembers",
     "qualifyStaticMembers",
@@ -394,20 +395,41 @@
         "server"
       ]
     },
-    "typst": {
-      "filetypes": [
-        "typst"
-      ],
-      "command": "typst-lsp"
-    },
     "protobuf-language-server": {
       "command": "protobuf-language-server",
       "filetypes": [
         "proto"
       ],
-      "settings": {
+      "settings": {""
         "additional-proto-dirs": []
       }
+    },
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": [
+        "--lsp"
+      ],
+      "rootPatterns": [
+        ".stack.yaml",
+        ".hie-bios",
+        "BUILD.bazel",
+        "cabal.config",
+        "package.yaml"
+      ],
+      "filetypes": [
+        "hs",
+        "lhs",
+        "haskell"
+      ]
+    },
+    "ocaml-lsp": {
+      "command": "opam",
+      "args": ["config", "exec", "--", "ocamllsp"],
+      "filetypes": ["ocaml", "reason"]
     }
-  }
+  },
+  "java.import.gradle.java.home": "/usr/lib/jvm/java-17-openjdk",
+  "spell.checks": ["spelling"],
+  "spell.enable": true,
+  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/18.1.3/clangd_18.1.3/bin/clangd"
 }

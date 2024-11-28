@@ -48,7 +48,7 @@ set GALLIUM_HUD "fps+temperature+cpu+memory-clock+VRAM-usage"
 bind \ef accept-autosuggestion
 
 
-set -U fish_color_autosuggestion "#1f202e"
+set -U fish_color_autosuggestion "#33384d"
 
 function aur
   xdg-open "https://aur.archlinux.org/'$1'"

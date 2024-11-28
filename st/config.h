@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "ZedMono Nerd Font Mono:style=Bold:size=14:antialias=true:autohint=true";
+static char *font = "MesloLGSDZ Nerd Font Mono:style=Bold:size=13:antialias=true:autohint=true";
 
 
 /* disable bold, italic and roman fonts globally */
@@ -33,7 +33,7 @@ char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 char *vtiden = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
-static float cwscale = 0.9;
+static float cwscale = 1.0;
 static float chscale = 1.0;
 
 /*
@@ -102,7 +102,7 @@ unsigned int tabspaces = 8;
 static const int alpha = 0xdd;
 
 /* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = { "#2a2c3c", "#f7768e", "#9ece6a", "#e0af68", "#7aa2f7", "#bb9af7", "#7dcfff", "#cbd0e6", "#2a2c3c", "#f7768e", "#9ece6a", "#e0af68", "#7aa2f7", "#bb9af7", "#7dcfff", "#cbd0e6", [255] = 0, "#c0caf5", "#15161e", "#c0caf5", "#15161e" };
+static const char *colorname[] = { "#33384d", "#e27878", "#b4be82", "#e4aa80", "#84a0c6", "#a093c7", "#89b8c2", "#c6c8d1", "#33384d", "#e27878", "#b4be82", "#e4aa80", "#84a0c6", "#a093c7", "#89b8c2", "#c6c8d1", [255] = 0, "#c7c7c7", "#000000", "#c7c7c7", "#000000" };
 
 /*
  * Default colors (colorname index)
