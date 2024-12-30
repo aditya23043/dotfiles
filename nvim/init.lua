@@ -27,4 +27,4 @@ require("lazy").setup({
   },
 })
 
-vim.g.clang_complete_macros = 1
+-- vim.cmd("set statusline=%!v:lua.require'statusbar'.statusline()")

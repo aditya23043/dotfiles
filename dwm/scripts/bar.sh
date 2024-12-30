@@ -58,7 +58,8 @@ _mem(){
   mem_total="$(top -b -n 1 | grep -i mem | sed -n 1p | awk '{print $4}')"
   mem_perc_with_extra="$(echo "scale = 4; ($mem_used/$mem_total)*100" | bc)"
   final_mem_perc="${mem_perc_with_extra::-2}%"
-  echo -ne "^b$accent_col^^c#000000^ MEM ^d^ $final_mem_perc"
+  mem_gigs="$(free -h | sed -n 2p | awk '{print $3}')"
+  echo -ne "^b$accent_col^^c#000000^ MEM ^d^ $mem_gigs"
 }
 
 _cpu(){
@@ -90,7 +91,7 @@ _bat_time(){
   fin_hour="$(echo $fin_hour | cut -d ' ' -f1)"
   fin_min="$(echo $fin_min | cut -d ' ' -f1)"
 
-  echo -ne "| $fin_hour:$fin_min"
+  echo -ne "| $bat_hour:$bat_min"
   
 }
 

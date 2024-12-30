@@ -30,7 +30,7 @@ keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 keymap("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", opts)
 
 -- Move right easily in insert mode
--- keymap("i", "<C-l>", "<right>", opts)
+keymap("i", "<C-l>", "<right>", opts)
 
 -- Buffer
 keymap("n", "<M-j>", ":bnext<CR>", opts)
@@ -54,8 +54,8 @@ keymap("n", "<leader>t", function()
 end)
 
 -- Reloading Config
-keymap("n", "<leader>x", "<cmd>.lua<CR>", { desc = "Execute the current line" })
-keymap("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current line" })
+-- keymap("n", "<leader>x", "<cmd>.lua<CR>", { desc = "Execute the current line" })
+-- keymap("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current line" })
 
 -- Tab Navigation
 keymap("n", "<C-.>", "gt")
@@ -83,12 +83,10 @@ end, { expr = true })
 -- Diagnostic
 keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 keymap("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-keymap("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
+keymap("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 keymap("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 vim.keymap.set("n", "<leader>we", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
 vim.cmd('abb Format lua vim.lsp.buf.format()')
 
-keymap("n", "<leader>o", "<cmd>NvimTreeToggle<CR>")
--- keymap("n", "<leader>o", "<cmd>Neotree toggle<CR>")
-keymap("n", "<C-f>", "<cmd>Oil<CR>")
+keymap("n", "<leader>e", "<cmd>Oil<CR>")

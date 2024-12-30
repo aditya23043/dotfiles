@@ -13,10 +13,10 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[] = {"MesloLGSDZ Nerd Font Mono:style=Bold:size=10:antialias=true:autohint=true"};
 static const char dmenufont[] = {"MesloLGSDZ Nerd Font Mono:style=Bold:size=10:antialias=true:autohint=true"};
-static const char norm_bg[] = "#000000";
+static const char norm_bg[] = "#141617";
 static const char norm_fg[] = "#888888";
-static const char sel_fg[] = "#161821";
-static const char accent_col[] = "#84a0c6";
+static const char sel_fg[] = "#000000";
+static const char accent_col[] = "#7daea3";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { norm_fg, norm_bg,    norm_bg },

@@ -1,60 +1,62 @@
 " (use `gx` keybinding to open the link)
 
-let mapleader=' '
+let mapleader = ' '
 let maplocalleader = ' '
 
 filetype on
 syntax on
 set autoindent autoread background=dark
 set backspace=indent,eol,start belloff=all
+" set backspace=indent,start belloff=all
 set display=lastline encoding=utf-8 hidden
 set history=10000 incsearch
-set nojoinspaces laststatus=2 ruler
+set nojoinspaces laststatus=0 ruler
 set showcmd smarttab nostartofline
 set switchbuf=uselast wildmenu "wildoptions=pum,tagfile
 
-set number
+set nonumber
 set nowrap
 
+" NOTE: hmm
 " set tabline=%t
-set showtabline=2
+set showtabline=1
 
 set tabline=%!MyTabLine()
 
 function MyTabLine()
-  let s = ''
-  for i in range(tabpagenr('$'))
-    " select the highlighting
-    if i + 1 == tabpagenr()
-      let s ..= '%#TabLineSel#'
-    else
-      let s ..= '%#TabLine#'
-    endif
+	let s = ''
+	for i in range(tabpagenr('$'))
+		" select the highlighting
+		if i + 1 == tabpagenr()
+			let s ..= '%#TabLineSel#'
+		else
+			let s ..= '%#TabLine#'
+		endif
 
-    " set the tab page number (for mouse clicks)
-    let s ..= '%' .. (i + 1) .. 'T'
+		" set the tab page number (for mouse clicks)
+		let s ..= '%' .. (i + 1) .. 'T'
 
-    " the label is made by MyTabLabel()
-    let s ..= ' %M %{MyTabLabel(' .. (i + 1) .. ')}  '
-  endfor
+		" the label is made by MyTabLabel()
+		let s ..= ' %M %{MyTabLabel(' .. (i + 1) .. ')}  '
+	endfor
 
-  " after the last tab fill with TabLineFill and reset tab page nr
-  let s ..= '%#TabLineFill#%T'
+	" after the last tab fill with TabLineFill and reset tab page nr
+	let s ..= '%#TabLineFill#%T'
 
-  " right-align the label to close the current tab page
-  if tabpagenr('$') > 1
-    let s ..= '%=%#TabLine#%999X close '
-  endif
+	" right-align the label to close the current tab page
+	if tabpagenr('$') > 1
+		let s ..= '%=%#TabLine#%999X close '
+	endif
 
-  return s
+	return s
 endfunction
 
 function MyTabLabel(n)
-  let buflist = tabpagebuflist(a:n)
-  let winnr = tabpagewinnr(a:n)
-  " return bufname(buflist[winnr - 1])
-  let fullpath = bufname(buflist[winnr - 1])
-  return fnamemodify(fullpath, ':t') " ':t' gives just the filename
+	let buflist = tabpagebuflist(a:n)
+	let winnr = tabpagewinnr(a:n)
+	" return bufname(buflist[winnr - 1])
+	let fullpath = bufname(buflist[winnr - 1])
+	return fnamemodify(fullpath, ':t') " ':t' gives just the filename
 endfunction
 
 set mouse=a
@@ -67,7 +69,7 @@ set breakindent
 
 set tabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
 
 set ignorecase
 set smartcase
@@ -84,9 +86,10 @@ set ttimeoutlen=50
 set splitright
 set splitbelow
 
-set list
+set nolist
 " set listchars=tab:»\ ,trail:·,nbsp:␣,lead:·
 " set listchars=tab:│\ ,trail:·,nbsp:␣
+" set listchars=tab:⇥\ ,trail:·,nbsp:␣,eol:⏎
 set listchars=tab:⇥\ ,trail:·,nbsp:␣
 
 set fillchars=vert:│,fold:─,foldopen:·
@@ -131,8 +134,8 @@ nnoremap <C-k> <C-w><C-k>
 "    See https://github.com/junegunn/vim-plug/ for more info
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " [[ Install plugins ]]
@@ -163,27 +166,53 @@ Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Color codes
-Plug 'lilydjwg/colorizer'
+" Plug 'lilydjwg/colorizer'
 
 " openscad
 Plug 'sirtaj/vim-openscad'
 
+" ASCII DOC
+Plug 'habamax/vim-asciidoctor'
+
+" ORG MODE
+Plug 'jceb/vim-orgmode'
+
+" Flutter
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'theniceboy/coc-flutter-tools'
+
+" GIT
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
+Plug 'devsjc/vim-jb'
 Plug 'morhetz/gruvbox'
+Plug 'romainl/flattened'
+Plug 'sainnhe/everforest'
+Plug 'bluz71/vim-moonfly-colors'
+Plug 'bluz71/vim-nightfly-colors'
+Plug 'catppuccin/vim', {'as': 'catppuccin'}
+" Plug 'ericbn/vim-solarized'
+" Plug 'romgrk/doom-one.vim'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'lifepillar/vim-solarized8'
 Plug 'sainnhe/gruvbox-material'
+" Plug 'joshdick/onedark.vim'
 " Plug 'rose-pine/vim', {'as': 'rosepine'}
 Plug 'cocopon/iceberg.vim'
 Plug 'nordtheme/vim', {'as': 'nord'}
 " Plug 'rmehri01/onenord.nvim'
 Plug 'nanotech/jellybeans.vim'
-Plug 'ghifarit53/tokyonight-vim'
+" Plug 'ghifarit53/tokyonight-vim'
 " Plug 'rakr/vim-one'
 " Plug 'junegunn/seoul256.vim'
 " Plug 'ayu-theme/ayu-vim'
-Plug 'Everblush/everblush.vim'
-Plug 'tomasiser/vim-code-dark'
+" Plug 'Everblush/everblush.vim'
+" Plug 'tomasiser/vim-code-dark'
 Plug 'vv9k/vim-github-dark'
+Plug 'overcache/NeoSolarized'
 " Solarized
-Plug 'ericbn/vim-solarized'
+" Plug 'ericbn/vim-solarized'
 
 " Adds git related signs to the gutter
 " Plug 'airblade/vim-gitgutter'
@@ -208,9 +237,6 @@ Plug 'cacharle/vim-syntax-extra'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
 
-" Rainbow parenthesis
-Plug 'junegunn/rainbow_parentheses.vim'
-
 call plug#end()
 
 
@@ -220,90 +246,178 @@ let g:tokyonight_style = 'night'  " available: night, storm
 let g:tokyonight_enable_italic = 0
 let g:gruvbox_italic=1
 
-colorscheme iceberg
+colorscheme gruvbox-material
+set bg=dark
 
 if g:colors_name == "gruvbox"
-  hi Comment guifg=#585858
-  hi Whitespace guifg=#585858
-  hi LineNr guifg=#383838
-  hi SpecialKey guifg=#585858
-  hi LimelightDim guifg=#484848
-  hi TabLineFill guibg=#282828
-  hi StatusLine guifg=#3c3836 guibg=#ddc7a1
-  let g:limelight_conceal_guifg = '#484848'
-elseif g:colors_name == "retrobox"
-elseif g:colors_name == "iceberg"
-  hi Comment guifg=#33384d
-  hi LineNr guifg=#1f212e guibg=#161821
-  hi CocInlayHint guibg=#1f212e guifg=#33384d
-  hi Pmenu guibg=#0a0b0f
-  hi WildMenu guibg=#b4be82
-  hi MatchParen guibg=NONE guifg=#e06c75
-  hi SignColumn guibg=#161821
-  hi CursorLine guibg=#1f212e
-  hi CursorLineNr guibg=#0f1117
-  hi StatusLine guifg=#0f1117 guibg=#9a9ca5
-  hi StatusLineNC guibg=#303136
-elseif g:colors_name == "ghdark"
-  hi Ignore guifg=#343434
-  hi NonText guifg=#343434
-  hi WildMenu guibg=#e06c75
-  hi Normal guibg=#000000
-  hi CursorLineNr guibg=#161b22
-  hi Comment guifg=#242424
-  hi LineNr guifg=#121212
-  hi Pmenu guibg=#121212
-  hi CursorLine guibg=#121212
-  hi CursorLineNr guibg=#121212 guifg=#ecf2f8
-  hi Search guifg=#000000 guibg=#f97970
-  hi StatusLine guifg=#c6cdd5 guibg=#121212
-  hi StatusLineNC guifg=#555555 guibg=#000000
-  hi SignColumn guibg=#121212
-  hi TabLine guibg=#232323 cterm=NONE guifg=#444444
-  hi TabLineFill guifg=#232323
-elseif g:colors_name == "tokyonight"
-  hi TabLineSel guifg=#a9b1d6 guibg=#32344a
-  hi TabLine guibg=#232433 guifg=#32344a
-  hi LineNr guibg=#232433 guifg=#32344a
-  hi CocInlayHint guibg=NONE guifg=#32344a
-  hi CursorLine guibg=NONE
-elseif g:colors_name == "rosepine"
-  hi Comment guifg=#585858
-elseif g:colors_name == "habamax"
-  hi Comment guifg=#343434
-  hi LineNr guifg=#343434
-  hi TabLineFill guibg=#1c1c1c
-  hi CocInlayHint guifg=#343434
-  hi CursorLine guibg=#1c1c1c
-  hi Pmenu guibg=#111111
-elseif g:colors_name == "gruvbox-material"
-  hi Comment guifg=#484848
-  hi LineNr guifg=#282828
-  hi CursorLineNr guifg=#ddc7a1
-  hi Normal guibg=#141617
-  hi TabLineSel guibg=#bcab8f guifg=#000000
-  hi TabLine guibg=#282828 guifg=#555555
-  hi TabLineFill guibg=#282828 guifg=#444444
-  hi StatusLine guibg=NONE guifg=#ddc7a1
-  hi CocCodeLens guibg=#141617 guifg=#484848
-  hi Whitespace guibg=#141617 guifg=#484848
+	hi Comment guifg=#585858
+	hi Whitespace guifg=#585858
+	hi LineNr guifg=#383838
+	hi SpecialKey guifg=#383838
+	hi LimelightDim guifg=#484848
+	hi TabLineFill guibg=#282828
+	hi StatusLine guifg=#3c3836 guibg=#ddc7a1
+	hi CursorLine guibg=#333333
+	hi StatusLine guibg=#ddc7a1
+	hi StatusLineNc guibg=#504b49
+	hi SignColumn guibg=#282828
+	hi CursorLineNr guifg=#a39275 guibg=#333333
+	hi CocInlayHint guibg=#333333 guifg=#585858
+	hi SpecialKey guifg=#333333
+	hi ErrorMsg ctermfg=256
+	let g:limelight_conceal_guifg = '#484848'
+elseif g:colors_name == "wildcharm"
+  hi Comment guifg=#cccccc
+  hi CocInlayHint guifg=#bbbbbb guibg=#eeeeee
   set nocursorline
+elseif g:colors_name == "NeoSolarized"
+	" hi Comment guifg=#dbd1bd
+	" hi LineNr guifg=#ede8de guibg=#fdf6e3
+	" hi SpecialKey guifg=#ede8de guibg=#fdf6e3
+
+	hi Normal guibg=#fcf0cf
+	hi LineNr guibg=#fcf0cf
+	hi CursorLine guibg=#fcf0cf
+	hi CursorLineNr guibg=#fcf0cf
+	hi TabLineFill guibg=#fae8b7
+	hi TabLineFill guibg=#fae8b7
+	hi Comment guifg=#e6d8b3
+	hi LineNr guifg=#e6d8b3
+	hi SpecialKey guifg=#e6d8b3 guibg=#fcf0cf
+	hi TabLineSel guibg=#586e75 guifg=#fcf0cf
+	hi TabLine guifg=#fcf0cf guibg=#e6d8b3
+elseif g:colors_name == "catppuccin_mocha"
+  hi EndOfBuffer guifg=#28283e
+  hi Comment guifg=#32324d
+  hi SpecialKey guifg=#28283e
+  hi LineNr guifg=#28283e
+  hi CursorLine guibg=#14141f
+elseif g:colors_name == "quiet"
+	hi Comment guifg=#343434
+	hi LineNr guifg=#232323
+	hi CursorLineNr guifg=#c7c7c7
+	hi CursorLine guibg=#121212
+	hi CursorLineNr guibg=#121212
+	hi StatusLine guibg=#000000 guifg=#777777
+	hi StatusLineNC guibg=#000000 guifg=#444444 cterm=NONE
+	hi Whitespace guifg=#232323
+	hi SpecialKey guifg=#121212
+	hi Search guifg=#676767 guibg=#000000
+	hi Visual guifg=#c7c7c7
+elseif g:colors_name == "moonfly"
+	hi CocInlayHint guifg=#454545
+	hi Comment guifg=#282828
+	hi CocErrorVirtualText guifg=#ff5454
+	hi WildMenu guibg=#e06c75 guifg=#000000
+	hi StatusLine guibg=#181818 guifg=#868686
+	hi NonText guifg=#282828
+	hi SpecialKey guifg=#282828
+	hi LineNr guifg=#181818
+	hi CursorLineNr guifg=#c6c6c6
+	hi CursorLine guibg=#1c1c1c
+elseif g:colors_name == "onedark"
+	hi Comment guifg=#2c303a
+	hi LineNr guifg=#2c303a
+	hi Normal guibg=#16181d
+	hi CursorLine guibg=#16181d
+	hi StatusLine guibg=#282c34 guifg=#abb2bf
+	hi StatusLineNC guibg=#282c34 guifg=#4e5565
+	hi Pmenu guibg=#2c303a
+elseif g:colors_name == "iceberg"
+	hi Comment guifg=#33384d
+	hi LineNr guifg=#1f212e guibg=#161821
+	hi CocInlayHint guibg=#1f212e guifg=#33384d
+	hi Pmenu guibg=#0a0b0f
+	hi WildMenu guibg=#b4be82
+	hi MatchParen guibg=NONE guifg=#e06c75
+	hi SignColumn guibg=#161821
+	hi CursorLine guibg=#1f212e
+	hi CursorLineNr guibg=#0f1117
+	hi StatusLine guifg=#0f1117 guibg=#9a9ca5
+	hi StatusLineNC guibg=#303136
+elseif g:colors_name == "ghdark"
+	hi Ignore guifg=#232323
+	hi NonText guifg=#232323
+	hi WildMenu guibg=#e06c75
+	hi CocMenuSel guifg=#000000 guibg=#ecf2f8
+	hi Normal guibg=#000000
+	hi CursorLineNr guibg=#161b22
+	hi Comment guifg=#242424
+	hi LineNr guifg=#121212
+	hi Pmenu guibg=#121212
+	hi CursorLine guibg=#121212
+	hi CursorLineNr guibg=#121212 guifg=#ecf2f8
+	hi Search guifg=#000000 guibg=#f97970
+	hi StatusLine guifg=#c6cdd5 guibg=#121212
+	hi StatusLineNC guifg=#555555 guibg=#000000
+	hi SignColumn guibg=#121212
+	hi TabLine guibg=#232323 cterm=NONE guifg=#444444
+	hi TabLineFill guifg=#232323
+elseif g:colors_name == "tokyonight"
+	hi Comment guifg=#32344a
+	hi TabLineSel guifg=#a9b1d6 guibg=#32344a
+	hi TabLine guibg=#232433 guifg=#32344a
+	hi LineNr guibg=#232433 guifg=#32344a
+	hi CocInlayHint guibg=NONE guifg=#32344a
+	hi CursorLine guibg=NONE
+elseif g:colors_name == "rosepine"
+	hi Comment guifg=#585858
+elseif g:colors_name == "habamax"
+	hi Comment guifg=#343434
+	hi LineNr guifg=#343434
+	hi TabLineFill guibg=#1c1c1c
+	hi CocInlayHint guifg=#343434
+	hi CursorLine guibg=#1c1c1c
+	hi Pmenu guibg=#111111
+elseif g:colors_name == "gruvbox-material"
+	hi SpecialChar guifg=#282828
+	hi EndOfBuffer guifg=#282828
+	hi SpecialKey guifg=#282828
+	hi NonText guifg=#282828
+	hi Comment guifg=#484848
+	hi LineNr guifg=#282828
+	hi CursorLineNr guifg=#ddc7a1
+	hi SpecialKey guifg=#282828
+	hi NonText guifg=#282828
+	hi Comment guifg=#484848
+	hi LineNr guifg=#282828
+	hi CursorLineNr guifg=#ddc7a1
+	hi Normal guibg=#141617
+	hi TabLineSel guibg=#bcab8f guifg=#000000
+	hi TabLine guibg=#282828 guifg=#555555
+	" hi SignColumn guibg=#282828
+	hi TabLineFill guibg=#282828 guifg=#444444
+	hi StatusLine guibg=#141617 guifg=#585858
+	hi StatusLineNC guibg=#141617 guifg=#817365
+	hi CocCodeLens guibg=#141617 guifg=#484848
+	hi Whitespace guibg=#141617 guifg=#484848
+	hi CocErrorVirtualText guifg=#ea6962
+	set cursorlineopt=number
 elseif g:colors_name == "jellybeans"
-  hi Comment guifg=#353535
-  hi StatusLine guibg=#353535 guifg=#999999
-  hi TabLineSel guibg=#353535 guifg=#999999
-  hi TabLine guibg=#252525 guifg=#444444
-  hi TabLineFill guibg=#252525 guifg=#444444
-  hi LineNr guifg=#333333 guibg=#252525
-  hi CursorLineNr guibg=#252525 guifg=#999999
-  hi CocInlayHint guibg=#252525 guifg=#555555
-  hi CocErrorSign guibg=#353535 guifg=#e06c75
-  " hi CocCodeLens guibg=#252525 guifg=#555555
-  hi CocCodeLens guibg=NONE guifg=#353535
-  hi EndOfBuffer guibg=NONE guifg=#353535
-  hi Search guifg=#e06c75
+	hi Comment guifg=#353535
+	hi StatusLine guibg=#353535 guifg=#999999
+	hi TabLineSel guibg=#353535 guifg=#999999
+	hi TabLine guibg=#252525 guifg=#444444
+	hi TabLineFill guibg=#252525 guifg=#444444
+	hi LineNr guifg=#333333 guibg=#252525
+	hi CursorLineNr guibg=#252525 guifg=#999999
+	hi CocInlayHint guibg=#252525 guifg=#555555
+	hi CocErrorSign guibg=#353535 guifg=#e06c75
+	" hi CocCodeLens guibg=#252525 guifg=#555555
+	hi CocCodeLens guibg=NONE guifg=#353535
+	hi EndOfBuffer guibg=NONE guifg=#353535
+	hi Search guifg=#e06c75
 elseif g:colors_name == "nord"
-  hi CocCodeLens guifg=#4b5468
+	hi CocCodeLens guifg=#4b5468
+	hi Comment guifg=#4b5468
+	hi LineNr guifg=#404859
+	hi Search guifg=#000000
+elseif g:colors_name == "agila"
+	hi CocErrorSign guifg=#ee6165
+elseif g:colors_name == "spacegray"
+	hi LineNr guifg=#3d4142
+	hi SignColumn guibg=#242627
+	hi CursorLineNr guibg=#242627 guifg=#B3B8c4
 endif
 
 
@@ -334,27 +448,27 @@ set signcolumn=yes
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config
 inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ "\<Tab>"
-      " \ CheckBackspace() ? "\<Tab>" :
-      " \ coc#refresh()
+			\ coc#pum#visible() ? coc#pum#next(1) :
+			\ "\<Tab>"
+" \ CheckBackspace() ? "\<Tab>" :
+" \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+	inoremap <silent><expr> <c-space> coc#refresh()
 else
-  inoremap <silent><expr> <c-@> coc#refresh()
+	inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -372,11 +486,11 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call ShowDocumentation()<CR>
 
 function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
+	if CocAction('hasProvider', 'hover')
+		call CocActionAsync('doHover')
+	else
+		call feedkeys('K', 'in')
+	endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor
@@ -390,17 +504,17 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s)
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+	autocmd!
+	" Setup formatexpr specified filetype(s)
+	autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+	" Update signature help on jump placeholder
+	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " Applying code actions to the selected code block
 " Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+xmap <leader>u  <Plug>(coc-codeaction-selected)
+nmap <leader>u  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying code actions at the cursor position
 nmap <leader>ac  <Plug>(coc-codeaction-cursor)
@@ -430,12 +544,12 @@ omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> to scroll float windows/popups
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+	nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+	nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+	inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+	inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+	vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+	vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
 " Use CTRL-S for selections ranges
@@ -469,8 +583,13 @@ nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+
+let g:everforest_background = 'soft'
+let g:asciidoctor_folding = 0
+let g:asciidoctor_fenced_languages = ['python', 'c', 'javascript', 'cpp']
+let g:asciidoctor_img_paste_command = 'xclip -selection clipboard -t image/png -o > %s%s'
+packadd! everforest 
 " Resume latest coc list
 " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
 " The line beneath this is called `modeline`. See `:help modeline`
 " vim: ts=2 sts=2 sw=2 et
