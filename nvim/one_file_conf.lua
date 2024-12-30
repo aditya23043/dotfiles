@@ -1,138 +1,56 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- NOTE: OPTIONS {{{
-
--- Set to true if you have a Nerd Font installed and selected in the terminal
+-- OPTIONS {{{
 vim.g.have_nerd_font = false
-
--- Make line numbers default
 vim.opt.number = true
-
--- set relative numbered lines
 vim.opt.relativenumber = true
-
--- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
-
--- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
-
--- Show fold lines in column
--- vim.cmd("set foldcolumn=1")
-
--- always show tabs
 vim.opt.showtabline = 0
-
--- convert tabs to spaces
 vim.opt.expandtab = true
-
--- the number of spaces inserted for each indentation
 vim.opt.shiftwidth = 2
-
--- insert 4 spaces for a tab
 vim.opt.tabstop = 2
-
--- Sync clipboard between OS and Neovim.
 vim.opt.clipboard = "unnamedplus"
-
--- Show last executed comand
 vim.opt.showcmd = false
-
 vim.opt.ruler = false
-
--- Enable break indent
 vim.opt.breakindent = true
-
--- make indenting smarter again
 vim.opt.smartindent = true
-
--- Save undo history
 vim.opt.undofile = false
-
--- more space in the neovim command line for displaying messages
 vim.opt.cmdheight = 1
-
--- mostly just for cmp
 vim.opt.completeopt = { "menuone", "noselect" }
-
--- pop up menu height
 vim.opt.pumheight = 10
 vim.opt.pumblend = 0
-
--- so that `` is visible in markdown files
 vim.opt.conceallevel = 3
-
--- Status bar
 vim.opt.laststatus = 2
-
--- the encoding written to a file
 vim.opt.fileencoding = "utf-8"
-
--- creates a backup file
 vim.opt.backup = false
-
--- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 vim.opt.writebackup = false
-
--- creates a swapfile
 vim.opt.swapfile = false
-
--- set term gui colors (most terminals support this)
 vim.opt.termguicolors = true
-
--- display lines as one long line
 vim.opt.wrap = false
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
--- Keep signcolumn on by default
 vim.opt.signcolumn = "yes"
-
--- Decrease update time
 vim.opt.updatetime = 100
-
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
 vim.opt.timeoutlen = 100
-
--- Configure how new splits should be opened
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-
--- Sets how neovim will display certain whitespace characters in the editor.-- Sets how neovim will display certain whitespace characters in the editor. -- Sets how neovim will display certain whitespace characters in the editor.
-
-vim.opt.list = true
--- vim.opt.listchars = "tab:»,trail:·,nbsp:␣"
+vim.opt.list = false
 vim.opt.listchars = { trail = "", eol = "󱞦", nbsp = "␣", lead = "", extends = "", precedes = "", tab = "  " }
-
--- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
-
--- Don't have `o` add a comment
 vim.opt.formatoptions:remove("o")
-
--- Show which line your cursor is on
 vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 8
-
 vim.opt.title = false
 vim.opt.spell = false
-
--- Correct the wrong indentation of clangd LSP
 vim.opt.cindent = true
-
--- NETRW
 vim.g.netrw_banner = 1
 vim.g.netrw_mouse = 2
 
 -- }}}
--- NOTE: KEYMAPS {{{
+-- KEYMAPS {{{
 
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
@@ -142,7 +60,7 @@ keymap({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- Tab remap
 keymap("n", "<C-i>", "<C-i>", opts)
 
-keymap("n", "<C-f>", "<cmd>Oil<CR>", opts)
+keymap("n", "<leader><leader>", "<cmd>Oil<CR>", opts)
 
 keymap("n", "n", "nzz", opts)
 keymap("n", "N", "Nzz", opts)
@@ -168,8 +86,8 @@ keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 keymap("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", opts)
 
 -- Buffer
-keymap("n", "<M-j>", ":bnext<CR>", opts)
-keymap("n", "<M-k>", ":bprevious<CR>", opts)
+-- keymap("n", "<M-j>", ":bnext<CR>", opts)
+-- keymap("n", "<M-k>", ":bprevious<CR>", opts)
 
 -- Horizontal Scrolling
 keymap("n", "L", "10zl")
@@ -180,118 +98,129 @@ keymap("n", "<C-t>", ":split | terminal<CR>10<C-w>-i")
 keymap("t", "<Esc>", "<C-\\><C-n>", opts)
 
 -- Reloading Config
-keymap("n", "<leader>x", "<cmd>.lua<CR>", { desc = "Execute the current line" })
-keymap("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current line" })
+-- keymap("n", "<leader>x", "<cmd>.lua<CR>", { desc = "Execute the current line" })
+-- keymap("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current line" })
 
 -- Tab Navigation
-keymap("n", "<C-.>", "gt")
-keymap("n", "<C-,>", "gT")
+-- keymap("n", "<C-.>", "gt")
+-- keymap("n", "<C-,>", "gT")
 
 -- Split size adjustment
-keymap("n", "<M-a>", "<c-w>5<")
-keymap("n", "<M-d>", "<c-w>5>")
-keymap("n", "<M-w>", "<c-W>+")
-keymap("n", "<M-s>", "<c-W>-")
+-- keymap("n", "<M-a>", "<c-w>5<")
+-- keymap("n", "<M-d>", "<c-w>5>")
+-- keymap("n", "<M-w>", "<c-W>+")
+-- keymap("n", "<M-s>", "<c-W>-")
 
 keymap("n", "<esc>", "<cmd>nohl<CR>", opts)
 
 -- Diagnostic
-keymap("n", "[d", function() vim.diagnostic.jump({count=1, float=true}) end, { desc = "Go to previous [D]iagnostic message" })
-keymap("n", "]d", function() vim.diagnostic.jump({count=-1, float=true}) end, { desc = "Go to next [D]iagnostic message" })
-keymap("n", "<leader>d", function() vim.diagnostic.jump({count=1, float=true}) end, { desc = "Go to previous [D]iagnostic message" })
+keymap("n", "[d", function() vim.diagnostic.jump({ count = 1, float = true }) end,
+  { desc = "Go to previous [D]iagnostic message" })
+keymap("n", "]d", function() vim.diagnostic.jump({ count = -1, float = true }) end,
+  { desc = "Go to next [D]iagnostic message" })
+keymap("n", "<leader>d", function() vim.diagnostic.jump({ count = 1, float = true }) end,
+  { desc = "Go to previous [D]iagnostic message" })
 keymap("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 keymap("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 vim.keymap.set("n", "<leader>we", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
 vim.cmd('abb Format lua vim.lsp.buf.format()')
 
-keymap("n", "<leader>o", "<cmd>NvimTreeToggle<CR>")
+-- keymap("n", "<leader>o", "<cmd>NvimTreeToggle<CR>")
 
 -- }}}
--- NOTE: LAZY {{{
+-- LAZY {{{
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-	if vim.v.shell_error ~= 0 then
-		error("Error cloning lazy.nvim:\n" .. out)
-	end
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    error("Error cloning lazy.nvim:\n" .. out)
+  end
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
- -- colorscheme {{{2
+  -- colorscheme {{{2
   {
     "dracula/vim",
     name = "dracula",
-    config = function ()
-       vim.cmd.colorscheme "dracula"
+    config = function()
       if vim.g.colors_name == "dracula" and vim.o.background == "dark" then
         vim.api.nvim_set_hl(0, "Normal", { bg = "#16171d" })
         vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
         vim.api.nvim_set_hl(0, "LineNr", { fg = "#282a36" })
-        vim.api.nvim_set_hl(0, "Comment", { fg = "#282a36" })
+        vim.api.nvim_set_hl(0, "Comment", { fg = "#363949" })
         vim.api.nvim_set_hl(0, "NonText", { fg = "#21232c" })
         vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#F8F8F2" })
         vim.api.nvim_set_hl(0, "StatusLine", { bg = "#16171d" })
       end
     end
+  },
+  {
+    "ellisonleao/gruvbox.nvim",
+    config = function()
+      vim.cmd.colorscheme "gruvbox"
+      if vim.g.colors_name == "gruvbox" and vim.o.background == "dark" then
+        vim.api.nvim_set_hl(0, "Comment", { fg = "#484848" })
+        vim.api.nvim_set_hl(0, "LineNr", { fg = "#383838" })
+      end
+    end
   }, -- }}}
 
   -- Auto detect tabstop and shiftwidth {{{2
-	"tpope/vim-sleuth",
+  "tpope/vim-sleuth",
   -- }}}
 
-	-- Formatting {{{2
-	{
-		"stevearc/conform.nvim",
-		event = { "BufWritePre" },
-		cmd = { "ConformInfo" },
-		keys = {
-			{
-				"<leader>f",
-				function()
-					require("conform").format({ async = true, lsp_format = "fallback" })
-				end,
-				mode = "",
-				desc = "[F]ormat buffer",
-			},
-		},
-		opts = {
-			notify_on_error = false,
-			format_on_save = function(bufnr)
-				-- Disable "format_on_save lsp_fallback" for languages that don't
-				-- have a well standardized coding style. You can add additional
-				-- languages here or re-enable it for the disabled ones.
-				local disable_filetypes = { c = false, cpp = false }
-				local lsp_format_opt
-				if disable_filetypes[vim.bo[bufnr].filetype] then
-					lsp_format_opt = "never"
-				else
-					lsp_format_opt = "fallback"
-				end
-				return {
-					timeout_ms = 500,
-					lsp_format = lsp_format_opt,
-				}
-			end,
-			formatters_by_ft = {
-				lua = { "stylua" },
-			},
-		},
-	},
+  -- Formatting {{{2
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    keys = {
+      {
+        "<leader>f",
+        function()
+          require("conform").format({ async = true, lsp_format = "fallback" })
+        end,
+        mode = "",
+        desc = "[F]ormat buffer",
+      },
+    },
+    opts = {
+      notify_on_error = false,
+      format_on_save = function(bufnr)
+        -- Disable "format_on_save lsp_fallback" for languages that don't
+        -- have a well standardized coding style. You can add additional
+        -- languages here or re-enable it for the disabled ones.
+        local disable_filetypes = { c = false, cpp = false }
+        local lsp_format_opt
+        if disable_filetypes[vim.bo[bufnr].filetype] then
+          lsp_format_opt = "never"
+        else
+          lsp_format_opt = "fallback"
+        end
+        return {
+          timeout_ms = 500,
+          lsp_format = lsp_format_opt,
+        }
+      end,
+      formatters_by_ft = {
+        lua = { "stylua" },
+      },
+    },
+  },
   --- }}}
 
-	-- Commenting using gcc {{{2
-	{
-		"folke/todo-comments.nvim",
-		event = "VimEnter",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = { signs = false },
-	},
-  -- }}}
+  -- Commenting using gcc {{{2
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+        require('Comment').setup()
+    end
+  },-- }}}
 
   -- LSP {{{2
   {
@@ -330,7 +259,7 @@ require("lazy").setup({
           checkThirdParty = false,
           telemetry = { enable = false },
           library = {
-            "/home/adi/.local/share/nvim/mason/packages/lua-language-server/libexec/meta/3rd/love2d/library",
+            -- "/home/adi/.local/share/nvim/mason/packages/lua-language-server/libexec/meta/3rd/love2d/library",
             -- "${3rd}/love2d/library",
           },
           filetypes = { "lua" },
@@ -493,7 +422,6 @@ require("lazy").setup({
           -- asm = { "asmfmt" },
         },
       })
-
     end,
   },
   -- }}}
@@ -562,8 +490,8 @@ require("lazy").setup({
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
-            -- elseif luasnip.expand_or_locally_jumpable() then
-            -- 	luasnip.expand_or_jump()
+              -- elseif luasnip.expand_or_locally_jumpable() then
+              -- 	luasnip.expand_or_jump()
             else
               fallback()
             end
@@ -571,8 +499,8 @@ require("lazy").setup({
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-            -- elseif luasnip.locally_jumpable(-1) then
-            -- 	luasnip.jump(-1)
+              -- elseif luasnip.locally_jumpable(-1) then
+              -- 	luasnip.jump(-1)
             else
               fallback()
             end
