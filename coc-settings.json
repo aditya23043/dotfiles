@@ -33,9 +33,10 @@
     "typeParameter": "",
     "default": ""
   },
+  "diagnostic.enableMessage": "always",
   "diagnostic.level": "error",
-  "diagnostic.virtualText": true,
-  "diagnostic.virtualTextCurrentLineOnly": true,
+  "diagnostic.virtualText": false,
+  "diagnostic.virtualTextCurrentLineOnly": false,
   "diagnostic.virtualTextPrefix": " ▸ ",
   "diagnostic.errorSign": "󰅜",
   "diagnostic.warningSign": "󰀦",
@@ -75,8 +76,13 @@
     "<C-v>": "prompt:paste"
   },
   "coc.preferences.enableLinkedEditing": true,
-  "coc.preferences.enableMessageDialog": true,
+  "coc.preferences.enableMessageDialog": false,
   "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "dart",
+    "cpp",
+    "c"
+  ],
   "links.tooltip": true,
   "git.changedSign.text": "▌",
   "git.addedSign.text": "▌",
@@ -173,8 +179,7 @@
     "javascript": "javascriptreact"
   },
   "html.filetypes": ["html", "php"],
-  "emmet.includeLanguages": {"html", "css", "php"};
-  "imselect.defaultInput": "com.apple.keylayout.ABC",
+  "emmet.includeLanguages": ["html", "css", "php"],
   "eslint.packageManager": "pnpm",
   "eslint.run": "onSave",
   "eslint.autoFixOnSave": true,
@@ -238,8 +243,8 @@
   "tsserver.implicitProjectConfig.experimentalDecorators": true,
   "tsserver.npm": "npm",
   "tsserver.useLocalTsdk": true,
-  "typescript.referencesCodeLens.enabled": true,
-  "typescript.referencesCodeLens.showOnAllFunctions": true,
+  "typescript.referencesCodeLens.enabled": false,
+  "typescript.referencesCodeLens.showOnAllFunctions": false,
   "typescript.implementationsCodeLens.enabled": true,
   "typescript.inlayHints.variableTypes.enabled": true,
   "typescript.inlayHints.parameterTypes.enabled": true,
@@ -250,8 +255,8 @@
   "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "typescript.format.semicolons": "insert",
-  "javascript.referencesCodeLens.enabled": true,
-  "javascript.referencesCodeLens.showOnAllFunctions": true,
+  "javascript.referencesCodeLens.enabled": false,
+  "javascript.referencesCodeLens.showOnAllFunctions": false,
   "javascript.implementationsCodeLens.enabled": true,
   "javascript.inlayHints.variableTypes.enabled": true,
   "javascript.inlayHints.parameterTypes.enabled": true,
@@ -335,6 +340,11 @@
   ],
   "sql.database": "mysql",
   "xml.codeLens.enabled": true,
+  "java.project.referencedLibraries": [
+      "*.jar",
+      "**/*.jar",
+      "src/**/*.jar"
+  ],
   "java.maxConcurrentBuilds": 4,
   "java.signatureHelp.description.enabled": true,
   "java.codeGeneration.generateComments": true,
@@ -431,5 +441,7 @@
   "java.import.gradle.java.home": "/usr/lib/jvm/java-17-openjdk",
   "spell.checks": ["spelling"],
   "spell.enable": true,
-  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/18.1.3/clangd_18.1.3/bin/clangd"
+  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/18.1.3/clangd_18.1.3/bin/clangd",
+  "flutter.sdk.path": "/opt/flutter"
+
 }
