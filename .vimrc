@@ -1,20 +1,9 @@
-" (use `gx` keybinding to open the link)
+let mapleader = " "
 
-let mapleader = ' '
-let maplocalleader = ' '
-
-filetype on
-syntax on
-set autoindent autoread background=dark
-set backspace=indent,eol,start belloff=all
-" set backspace=indent,start belloff=all
-set display=lastline encoding=utf-8 hidden
-set history=10000 incsearch
-set nojoinspaces laststatus=0 ruler
 set showcmd smarttab nostartofline
 set switchbuf=uselast wildmenu "wildoptions=pum,tagfile
 
-set nonumber
+set number
 set nowrap
 
 " NOTE: hmm
@@ -86,6 +75,8 @@ set ttimeoutlen=50
 set splitright
 set splitbelow
 
+set title
+
 set nolist
 " set listchars=tab:»\ ,trail:·,nbsp:␣,lead:·
 " set listchars=tab:│\ ,trail:·,nbsp:␣
@@ -114,11 +105,11 @@ inoremap <C-j> <Right>
 set hlsearch
 nnoremap <Esc> :nohlsearch<CR>
 
-nnoremap <space>m <cmd>tabnext<CR>
-nnoremap <space>n <cmd>tabprev<CR>
+" nnoremap <space>m <cmd>tabnext<CR>
+" nnoremap <space>n <cmd>tabprev<CR>
 " nnoremap <space>e <cmd>NERDTreeToggle<CR>
-nnoremap <space>e <cmd>Ex<CR>
-nnoremap <S-j> <cmd>Ex<CR>
+nnoremap <leader>e <cmd>Ex<CR>
+" nnoremap <S-j> <cmd>Ex<CR>
 
 tnoremap <Esc><Esc> <C-\><C-n>
 
@@ -166,7 +157,7 @@ Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Color codes
-" Plug 'lilydjwg/colorizer'
+Plug 'lilydjwg/colorizer'
 
 " openscad
 Plug 'sirtaj/vim-openscad'
@@ -182,13 +173,17 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'theniceboy/coc-flutter-tools'
 
 " GIT
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-Plug 'devsjc/vim-jb'
+" Plug 'tpope/vim-vinegar'
+
+Plug 'ayu-theme/ayu-vim'
+Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
-Plug 'romainl/flattened'
+Plug 'relastle/bluewery.vim'
 Plug 'sainnhe/everforest'
+Plug 'timmajani/tokyonightnoir-vim', {'as': 'tokyo'}
 Plug 'bluz71/vim-moonfly-colors'
 Plug 'bluz71/vim-nightfly-colors'
 Plug 'catppuccin/vim', {'as': 'catppuccin'}
@@ -198,17 +193,17 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'lifepillar/vim-solarized8'
 Plug 'sainnhe/gruvbox-material'
 " Plug 'joshdick/onedark.vim'
-" Plug 'rose-pine/vim', {'as': 'rosepine'}
+Plug 'rose-pine/vim', {'as': 'rosepine'}
 Plug 'cocopon/iceberg.vim'
 Plug 'nordtheme/vim', {'as': 'nord'}
 " Plug 'rmehri01/onenord.nvim'
 Plug 'nanotech/jellybeans.vim'
-" Plug 'ghifarit53/tokyonight-vim'
+Plug 'ghifarit53/tokyonight-vim'
 " Plug 'rakr/vim-one'
 " Plug 'junegunn/seoul256.vim'
 " Plug 'ayu-theme/ayu-vim'
-" Plug 'Everblush/everblush.vim'
-" Plug 'tomasiser/vim-code-dark'
+Plug 'Everblush/everblush.vim'
+Plug 'tomasiser/vim-code-dark'
 Plug 'vv9k/vim-github-dark'
 Plug 'overcache/NeoSolarized'
 " Solarized
@@ -246,29 +241,42 @@ let g:tokyonight_style = 'night'  " available: night, storm
 let g:tokyonight_enable_italic = 0
 let g:gruvbox_italic=1
 
-colorscheme gruvbox-material
 set bg=dark
+colorscheme gruvbox
 
 if g:colors_name == "gruvbox"
-	hi Comment guifg=#585858
+	" hi Comment guifg=#484848
 	hi Whitespace guifg=#585858
 	hi LineNr guifg=#383838
 	hi SpecialKey guifg=#383838
 	hi LimelightDim guifg=#484848
 	hi TabLineFill guibg=#282828
 	hi StatusLine guifg=#3c3836 guibg=#ddc7a1
-	hi CursorLine guibg=#333333
+	hi CursorLine guibg=#3c3836
 	hi StatusLine guibg=#ddc7a1
 	hi StatusLineNc guibg=#504b49
-	hi SignColumn guibg=#282828
-	hi CursorLineNr guifg=#a39275 guibg=#333333
+	" hi SignColumn guibg=#3c3836
+	" hi SignColumn guibg=#282828
+	hi CursorLineNr guifg=#ddc7a1 guibg=#3c3836
 	hi CocInlayHint guibg=#333333 guifg=#585858
 	hi SpecialKey guifg=#333333
 	hi ErrorMsg ctermfg=256
 	let g:limelight_conceal_guifg = '#484848'
+elseif g:colors_name == "bluewery-light"
+  hi Comment guifg=#bfbaa6
+  hi LineNr guifg=#bfbaa6
+  set nocursorline
 elseif g:colors_name == "wildcharm"
-  hi Comment guifg=#cccccc
-  hi CocInlayHint guifg=#bbbbbb guibg=#eeeeee
+  hi Comment guifg=#232323
+  hi LineNr guifg=#232323
+  hi WildMenu cterm=NONE guibg=#aaaaaa guifg=#000000
+  hi StatusLine guibg=#232323 cterm=none guifg=#555555
+  hi CocMenuSel guibg=#aaaaaa guifg=#000000
+  hi Pmenu cterm=NONE guibg=#232323
+  hi PmenuExtra cterm=NONE guibg=#232323
+  hi CocPumDetail guifg=#454545
+  hi CocPumShortcut guifg=#454545
+  " hi CocInlayHint guifg=#bbbbbb guibg=#eeeeee
   set nocursorline
 elseif g:colors_name == "NeoSolarized"
 	" hi Comment guifg=#dbd1bd
@@ -355,13 +363,18 @@ elseif g:colors_name == "ghdark"
 	hi TabLineFill guifg=#232323
 elseif g:colors_name == "tokyonight"
 	hi Comment guifg=#32344a
-	hi TabLineSel guifg=#a9b1d6 guibg=#32344a
-	hi TabLine guibg=#232433 guifg=#32344a
-	hi LineNr guibg=#232433 guifg=#32344a
-	hi CocInlayHint guibg=NONE guifg=#32344a
-	hi CursorLine guibg=NONE
+	" hi TabLineSel guifg=#a9b1d6 guibg=#32344a
+	" hi TabLine guibg=#232433 guifg=#32344a
+	" hi LineNr guibg=#232433 guifg=#32344a
+	" hi CocInlayHint guibg=NONE guifg=#32344a
+	" hi CursorLine guibg=NONE
 elseif g:colors_name == "rosepine"
-	hi Comment guifg=#585858
+  hi Normal guibg=#000000
+  hi Normal guibg=NONE
+  hi CocMenuSel guifg=#000000 guibg=#ebbcba
+" elseif g:colors_name == "rosepine" && g:bg == "light"
+"   hi Comment guifg=#decdba
+"   hi LineNr guifg=#e6d9cb
 elseif g:colors_name == "habamax"
 	hi Comment guifg=#343434
 	hi LineNr guifg=#343434
@@ -370,19 +383,19 @@ elseif g:colors_name == "habamax"
 	hi CursorLine guibg=#1c1c1c
 	hi Pmenu guibg=#111111
 elseif g:colors_name == "gruvbox-material"
-	hi SpecialChar guifg=#282828
+	hi CursorLine guibg=#181a1b
+	hi SpecialChar guifg=#7daea3
 	hi EndOfBuffer guifg=#282828
 	hi SpecialKey guifg=#282828
 	hi NonText guifg=#282828
-	hi Comment guifg=#484848
+	hi Comment guifg=#383838
 	hi LineNr guifg=#282828
 	hi CursorLineNr guifg=#ddc7a1
 	hi SpecialKey guifg=#282828
 	hi NonText guifg=#282828
-	hi Comment guifg=#484848
 	hi LineNr guifg=#282828
-	hi CursorLineNr guifg=#ddc7a1
-	hi Normal guibg=#141617
+	" hi Normal guibg=#141617
+	hi Normal guibg=NONE
 	hi TabLineSel guibg=#bcab8f guifg=#000000
 	hi TabLine guibg=#282828 guifg=#555555
 	" hi SignColumn guibg=#282828
@@ -392,7 +405,7 @@ elseif g:colors_name == "gruvbox-material"
 	hi CocCodeLens guibg=#141617 guifg=#484848
 	hi Whitespace guibg=#141617 guifg=#484848
 	hi CocErrorVirtualText guifg=#ea6962
-	set cursorlineopt=number
+	" set cursorlineopt=number
 elseif g:colors_name == "jellybeans"
 	hi Comment guifg=#353535
 	hi StatusLine guibg=#353535 guifg=#999999
@@ -473,8 +486,8 @@ endif
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <leader>k <Plug>(coc-diagnostic-prev)
+nmap <leader>j <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
@@ -513,8 +526,9 @@ augroup end
 
 " Applying code actions to the selected code block
 " Example: `<leader>aap` for current paragraph
-xmap <leader>u  <Plug>(coc-codeaction-selected)
-nmap <leader>u  <Plug>(coc-codeaction-selected)
+xmap <leader>d  <Plug>(coc-codeaction-selected)
+nmap <leader>d  <Plug>(coc-codeaction-selected)
+nmap <leader><leader> v<Plug>(coc-codeaction-selected)
 
 " Remap keys for applying code actions at the cursor position
 nmap <leader>ac  <Plug>(coc-codeaction-cursor)
@@ -570,19 +584,23 @@ set statusline=%r\ %F\ %y%m\ %p%%%=%{coc#status()}%{get(b:,'coc_current_function
 
 " Mappings for CoCList
 " Show all diagnostics
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" nnoremap <silent><nowait> <leader>d  :<C-u>CocList diagnostics<cr>
 " Manage extensions
-" nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" nnoremap <silent><nowait> <leader>e  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <leader>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <leader>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <leader>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" nnoremap <silent><nowait> <leader>j  :<C-u>CocNext<CR>
 " Do default action for previous item
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" nnoremap <silent><nowait> <leader>k  :<C-u>CocPrev<CR>
+
+nnoremap <leader>a :call CocActionAsync('codeAction', 'selected')<CR>
+
+let g:coc_global_extensions = ['coc-clangd', 'coc-git', 'coc-tsserver', 'coc-phpls', 'coc-emmet', 'coc-flutter', 'coc-eslint', 'coc-tslint-plugin']
 
 let g:everforest_background = 'soft'
 let g:asciidoctor_folding = 0

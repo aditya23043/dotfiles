@@ -12,6 +12,7 @@ function fish_prompt --description 'Write out the prompt'
 
     # Color the prompt differently when we're root
     set -l suffix '❯'
+    # set -l suffix '▷ '
     if functions -q fish_is_root_user; and fish_is_root_user
         if set -q fish_color_cwd_root
             set cwd_color (set_color $fish_color_cwd_root)

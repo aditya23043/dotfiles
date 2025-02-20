@@ -62,4 +62,9 @@ _cpu(){
   echo -ne "^b#7daea3^^c#000000^ CPU ^d^ $cmd"
 }
 
-xsetroot -name "$(arch) $(_cpu) $(_mem) $(volume) $(battery) $(_time) $(_date) "
+_mem2(){
+  foo="$(free -h | sed -n 2p | awk '{print $3}')"
+  echo -ne "^b#7daea3^^c#000000^ MEM ^d^ $cmd"
+}
+
+xsetroot -name "$(arch) $(_cpu) $(_mem2) $(volume) $(battery) $(_time) $(_date) "

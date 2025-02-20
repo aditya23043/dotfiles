@@ -29,11 +29,15 @@ function fish_command_not_found
 end
 
 
+alias repo "cd /mnt/hdd/repo"
+alias notes "cd /mnt/hdd/repo/sem4/; /mnt/hdd/repo/notes/Write/Write ."
 alias ll "eza -lah --color=always --group-directories-first -F --icons=always"
 alias ls "eza --group-directories-first -F -a --color=always --icons=always"
 alias llnu "nu --commands 'ls'"
 export QT_QPA_PLATFORMTHEME=gtk2
-export GTK_THEME=Dracula
+export GTK_THEME=Flat-Remix-GTK-Magenta-Dark-Solid
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+# export VK_DRIVER_FILES=/usr/share/vulkan/icd.d/amd_icd64.json steam
 export _JAVA_AWT_WM_NONREPARENTING=1
 alias files "fzf --preview='cat {}' | xargs nvim"
 set JAVA_HOME "/usr/lib/jvm/java-22-openjdk"
@@ -42,13 +46,14 @@ set -U fish_user_paths $JAVA_HOME/bin $fish_user_paths
 set -U fish_user_paths /tools/Xilinx/Vivado/2019.1/bin $fish_user_paths
 set XILINXD_LICENSE_FILE "2100@192.168.1.70"
 set WINEARCH win32
-set WINEPREFIX ~/.wine32
+set WINEPREFIX ~/.wine
 set GALLIUM_HUD "fps+temperature+cpu+memory-clock+VRAM-usage"
+set PICO_SDK_PATH "/home/adi/pico/pico-sdk"
 
-bind \ef accept-autosuggestion
+# bind \ef accept-autosuggestion
 
 
-set -U fish_color_autosuggestion "#33384d"
+set -U fish_color_autosuggestion "#242729"
 
 function aur
   xdg-open "https://aur.archlinux.org/'$1'"
