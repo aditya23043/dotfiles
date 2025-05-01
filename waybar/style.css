@@ -1,0 +1,77 @@
+* {
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: "JetBrainsMono NFM";
+  font-family: "Cascadia Code NF";
+  font-weight: bold;
+  font-size: 12px;
+}
+
+window#waybar {
+  background-color: rgba(20, 22, 23, 1);
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#workspaces button {
+  font-weight: 900;
+  color: #888888;
+  padding: 0 5px;
+  margin: 2px 1px 4px 1px;
+  background-color: #282828;
+  box-shadow: 0px 10px 0px #111111;
+  transition: all 0.5s ease;
+}
+
+#workspaces button:hover {
+  background-color: #af1504;
+}
+
+#workspaces button.visible {
+  color: #000000;
+  background-color: #fb4934;
+  box-shadow: 0px 10px 0px #af1504;
+}
+
+#workspaces button.urgent {
+  background-color: #ff0000;
+}
+
+#custom-bat {
+  color: #000000;
+  background-color: #fb4934;
+  box-shadow: 0px 10px 0px #af1504;
+  padding: 0 10px;
+  margin: 5px;
+}
+
+#battery {
+  color: #000000;
+  background-color: #7daea3;
+  box-shadow: 0px 10px 0px #4f7d73;
+  padding: 0 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+#tray {
+  padding: 1px 10px 0px 5px;
+}
+
+#window {
+  color: #000000;
+  background-color: #8ec07c;
+  box-shadow: 0px 10px 0px #609b4b;
+  padding: 0 10px;
+  margin: 5px;
+  border-radius: 5px;
+  transition: all 0.5s ease;
+}
+
+window#waybar.empty #window {
+  background-color: #141617;
+  box-shadow: none;
+}

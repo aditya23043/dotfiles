@@ -1,0 +1,48 @@
+// -*- mode: jsonc -*-
+{
+  "layer": "top",
+  "position": "top",
+  "height": 12,
+  "spacing": 4,
+  "reload_style_on_change": true,
+
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["hyprland/window"],
+  "modules-right": ["battery", "tray"],
+
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "active-only": false
+  },
+
+  "hyprland/window": {
+    "separate-outputs": true,
+    "expand": true
+  },
+
+  "tray": {
+    "icon-size": 15,
+    "spacing": 10
+  },
+
+  "custom/bat": {
+    "format": " {text}",
+    "interval": 60,
+    "exec": "acpi | cut -d, -f2 | awk '{print $1}'"
+  },
+  "battery": {
+    "bat": "BAT1",
+    "interval": 60,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-full": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", ""],
+    "max-length": 25
+  }
+}
