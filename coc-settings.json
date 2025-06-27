@@ -170,6 +170,7 @@
     "javascript": "javascriptreact"
   },
   "html.filetypes": ["html", "php"],
+<<<<<<< HEAD
   "emmet.includeLanguages": ["html", "css", "php"],
   "eslint.probe":[
     "javascript",
@@ -181,6 +182,10 @@
     "markdown",
     "php"
   ],
+=======
+  "emmet.includeLanguages": {"html", "css", "php"};
+  "imselect.defaultInput": "com.apple.keylayout.ABC",
+>>>>>>> parent of e61fb21 (added coc vim configs)
   "eslint.packageManager": "pnpm",
   "eslint.run": "onSave",
   "eslint.autoFixOnSave": true,
@@ -257,7 +262,11 @@
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "typescript.format.semicolons": "insert",
   "javascript.referencesCodeLens.enabled": true,
+<<<<<<< HEAD
   "javascript.referencesCodeLens.showOnAllFunctions": false,
+=======
+  "javascript.referencesCodeLens.showOnAllFunctions": true,
+>>>>>>> parent of e61fb21 (added coc vim configs)
   "javascript.implementationsCodeLens.enabled": true,
   "javascript.inlayHints.variableTypes.enabled": true,
   "javascript.inlayHints.parameterTypes.enabled": true,

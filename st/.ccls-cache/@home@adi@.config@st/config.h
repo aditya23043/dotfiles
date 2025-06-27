@@ -6,7 +6,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font =
-    "Cascadia Code NF:style=SemiBold:size=13:antialias=true:autohint=true";
+    "Cascadia Code NF:style=SemiBold:size=14:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -95,9 +95,14 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = { "#212126", "#d01a41", "#17865d", "#8b6e09", "#0a7caa", "#c30d97", "#0c8285", "#e0ded8", "#212126", "#d01a41", "#17865d", "#8b6e09", "#0a7caa", "#c30d97", "#0c8285", "#e0ded8", [255] = 0, "#000000", "#fefcf4", "#000000", "#fefcf4" };
+static const char *colorname[] = {
+    "#282828", "#ea6962", "#a9b665", "#d8a657", "#7daea3", "#d3869b",
+    "#89b482", "#d4be98", "#282828", "#ea6962", "#a9b665", "#d8a657",
+    "#7daea3", "#d3869b", "#89b482", "#d4be98", [255] = 0, "#ddc7a1",
+    "#141617", "#ddc7a1", "#141617"};
 
 /*
+ * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
 unsigned int defaultfg = 258;
