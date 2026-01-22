@@ -19,14 +19,14 @@ static const int showbar = 1;     /* 0 means no bar */
 static const int topbar = 1;      /* 0 means bottom bar */
 static const char *fonts[] = {
     "RecMonoLinear Nerd Font "
-    "Mono:style=Bold:size=9:antialias=true:autohint=true"};
+    "Mono:style=Bold:size=10:antialias=true:autohint=true"};
 static const char dmenufont[] = {
     "RecMonoLinear Nerd Font "
-    "Mono:style=Bold:size=9:antialias=true:autohint=true"};
+    "Mono:style=Bold:size=10:antialias=true:autohint=true"};
 static const char norm_bg[] = "#141617";
 static const char norm_fg[] = "#888888";
 static const char sel_fg[] = "#000000";
-static const char accent_col[] = "#7daea3";
+static const char accent_col[] = "#cd0245";
 static const char *colors[][3] = {
     /*               fg         bg         border   */
     [SchemeNorm] = {norm_fg, norm_bg, norm_bg},
@@ -38,6 +38,8 @@ static const char *colors[][3] = {
 #define TAG_PREPEND "%1i:" /* formatted as 2 chars */
 #define MAX_TAGLEN 16      /* altogether */
 static char tags[][MAX_TAGLEN] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+// static char tags[][MAX_TAGLEN] = {"TERM", "WEB", "FILES", "GAME", "MUSIC",
+// "6", "7", "TRAN", "TOR"};
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -89,9 +91,9 @@ static const char *termcmd[] = {"st", NULL};
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
-    {MODKEY, XK_r, spawn, SHCMD("xfce4-appfinder")},
+    {MODKEY, XK_r, spawn,
+     SHCMD("rofi -show drun -theme ~/.config/rofi/theme.rasi")},
     {MODKEY, XK_p, spawn, {.v = dmenucmd}},
-    {MODKEY, XK_u, spawn, SHCMD("/home/adi/.config/dwm/scripts/init.sh")},
     {MODKEY, XK_Return, spawn, {.v = termcmd}},
     {MODKEY, XK_b, togglebar, {0}},
     {MODKEY, XK_j, focusstack, {.i = +1}},
@@ -123,18 +125,18 @@ static const Key keys[] = {
         TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
             TAGKEYS(XK_9, 8){MODKEY | ShiftMask, XK_q, quit, {0}},
     {0, XF86XK_AudioLowerVolume, spawn,
-     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%; "
-           "/home/adi/.config/dwm/scripts/bar.sh")},
+     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%"
+           " && kill -USR1 $(pgrep slstatus)")},
     {0, XF86XK_AudioRaiseVolume, spawn,
-     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%; "
-           "/home/adi/.config/dwm/scripts/bar.sh")},
+     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%"
+           " && kill -USR1 $(pgrep slstatus)")},
     {0, XF86XK_AudioMute, spawn,
-     SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle; "
-           "/home/adi/.config/dwm/scripts/bar.sh")},
+     SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle"
+           " && kill -USR1 $(pgrep slstatus)")},
     {0, XF86XK_MonBrightnessUp, spawn,
-     SHCMD("sudo ybacklight -inc 10%; /home/adi/.config/dwm/scripts/bar.sh")},
+     SHCMD("sudo ybacklight -inc 10% && kill -USR1 $(pgrep slstatus)")},
     {0, XF86XK_MonBrightnessDown, spawn,
-     SHCMD("sudo ybacklight -dec 10%; /home/adi/.config/dwm/scripts/bar.sh")},
+     SHCMD("sudo ybacklight -dec 10% && kill -USR1 $(pgrep slstatus)")},
     {0, XF86XK_AudioPlay, spawn, SHCMD("playerctl play-pause")},
 };
 
