@@ -1,38 +1,36 @@
 {
+  "clangd.arguments": [
+    "--completion-style=detailed",
+    "--function-arg-placeholders=true",
+    "--header-insertion=never",
+    "--all-scopes-completion"
+  ],
   "suggest.noselect": true,
-
-  "coc.preferences.formatOnSave": true,
-
-  "diagnostic.virtualText": false,
-  "diagnostic.virtualTextCurrentLineOnly": false,
+  "coc.preferences.formatOnSave": false,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": true,
   "diagnostic.virtualTextPrefix": " ▸ ",
-
-  "diagnostic.errorSign": "",
-  "diagnostic.warningSign": "!",
-  "diagnostic.infoSign": "!",
-  "diagnostic.hintSign": "",
-
   "java.import.gradle.enabled": true,
   "java.import.gradle.wrapper.enabled": true,
   "java.import.gradle.offline.enabled": false,
   "java.configuration.updateBuildConfiguration": "interactive",
-
   "java.signatureHelp.description.enabled": true,
   "java.codeGeneration.generateComments": true,
-  "java.saveActions.organizeImports": true,
+  "java.saveActions.organizeImports": false,
   "java.format.enabled": true,
   "java.referencesCodeLens.enabled": true,
   "java.implementationsCodeLens.enabled": true,
-
   "codeLens.enable": true,
   "codeLens.separator": "▸",
   "codeLens.display": true,
   "inlayHint.enable": true,
   "inlayHint.refreshOnInsertMode": true,
-
   "flutter.sdk.path": "/opt/flutter",
   "flutter.lsp.initialization.closingLabels": true,
-
   "git.enableGutters": false,
-  "markdown-preview-enhanced.liveUpdate": true
+  "markdown-preview-enhanced.liveUpdate": true,
+  "snippets.ultisnips.pythonPrompt": false,
+  "tsserver.log": "verbose",
+  "tsserver.trace.server": "verbose",
+  "pyls.commandPath": "/usr/bin/pylsp"
 }
