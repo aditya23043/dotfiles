@@ -1,11 +1,6 @@
-/* See LICENSE file for copyright and license details. */
-
-/*
- * appearance
- *
- * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
- */
-static char *font = "Hasklug Nerd Font:style=Regular:size=19:antialias=true:autohint=true";
+static char *font =
+    /* "Maple Mono CN:style=Regular:size=19:antialias=true:autohint=true"; */
+    "Maple Mono CN:style=SemiBold:size=13:antialias=true:autohint=true";
 
 static int borderpx = 2;
 
@@ -27,7 +22,7 @@ char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 char *vtiden = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
-static float cwscale = 0.9;
+static float cwscale = 1.0;
 static float chscale = 1.0;
 
 /*
@@ -95,7 +90,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = { "#282828", "#ea6962", "#a9b665", "#d8a657", "#7daea3", "#d3869b", "#89b482", "#d4be98", "#282828", "#ea6962", "#a9b665", "#d8a657", "#7daea3", "#d3869b", "#89b482", "#d4be98", [255] = 0, "#ddc7a1", "#141617", "#ddc7a1", "#141617" };
+static const char *colorname[] = { "#2a2c3c", "#f7768e", "#9ece6a", "#e0af68", "#7aa2f7", "#bb9af7", "#7dcfff", "#cbd0e6", "#2a2c3c", "#f7768e", "#9ece6a", "#e0af68", "#7aa2f7", "#bb9af7", "#7dcfff", "#cbd0e6", [255] = 0, "#c0caf5", "#15161e", "#b2b2b2", "#121212" };
 
 /*
  * foreground, background, cursor, reverse cursor

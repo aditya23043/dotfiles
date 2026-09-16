@@ -65,15 +65,18 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function format          argument */
-	{ battery_perc,		" BAT: %s%% | ",			"BAT1"					},
-	{ run_command,		"VOL: %s | ",				"pactl get-sink-volume @DEFAULT_SINK@ | sed -n 1p | cut -d/ -f2 | awk '{print $1}'" },
-	{ run_command,		"BRI: %s%% | ",				"ybacklight -get | cut -d. -f1" },
-	{ ram_used,			"RAM: %s ",					NULL					},
-	{ ram_perc,			"(%s%%) | ",				NULL					},
-	{ cpu_perc,			"CPU: %s%% | ",				NULL					},
-	{ ipv4,				"WIFI: %s | ",				"wlp3s0"				},
-	{ disk_perc,		"ROOT: %s%% | ",			"/"						},
-	{ uptime,			"UP: %s | ",				NULL					},
-	{ datetime,			"%s",						"%I:%M %p | %b %d, %Y"	},
+    /* function format          argument */
+    {run_command, " LEETCODE: %s | ", "curl -X POST -H \"Content-Type: application/json\" -d '{\"query\": \"query userProfile($username: String!) { matchedUser(username: $username) { submitStats { acSubmissionNum { difficulty count } } } }\", \"variables\": {\"username\": \"aditya23043\"}}' https://leetcode.com/graphql/ -s | jq '.data.matchedUser.submitStats.acSubmissionNum[0].count'"},
+    {battery_perc, "BAT: %s%% | ", "BAT1"},
+    {run_command, "VOL: %s | ",
+     "pactl get-sink-volume @DEFAULT_SINK@ | sed -n 1p | cut -d/ -f2 | awk "
+     "'{print $1}'"},
+    {run_command, "BRI: %s%% | ", "ybacklight -get | cut -d. -f1"},
+    {ram_used, "RAM: %s ", NULL},
+    {ram_perc, "(%s%%) | ", NULL},
+    {cpu_perc, "CPU: %s%% | ", NULL},
+    {ipv4, "WIFI: %s | ", "wlp3s0"},
+    {disk_perc, "ROOT: %s%% | ", "/"},
+    {uptime, "UP: %s | ", NULL},
+    {datetime, "%s ", "%I:%M %p | %b %d, %Y"},
 };

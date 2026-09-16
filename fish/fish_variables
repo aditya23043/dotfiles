@@ -1,5 +1,5 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR __fish_initialized:4300
-SETUVAR fish_color_autosuggestion:\x23242729
-SETUVAR fish_user_paths:/Users/adi/\x2elocal/bin\x1e/opt/homebrew/opt/flex\x1e/opt/homebrew/opt/bison\x1e/opt/homebrew/opt/llvm/bin\x1e/opt/homebrew/bin\x1e/usr/local/bin
+SETUVAR fish_color_autosuggestion:\x231f202e
+SETUVAR fish_user_paths:/opt/riscv/bin\x1e/opt/pspdev/bin\x1e/Users/adi/\x2elocal/bin\x1e/opt/homebrew/opt/flex\x1e/opt/homebrew/opt/bison\x1e/opt/homebrew/opt/llvm/bin\x1e/opt/homebrew/bin\x1e/usr/local/bin

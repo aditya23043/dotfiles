@@ -18,15 +18,15 @@ static const int showsystray = 1; /* 0 means no systray */
 static const int showbar = 1;     /* 0 means no bar */
 static const int topbar = 1;      /* 0 means bottom bar */
 static const char *fonts[] = {
-    "RecMonoLinear Nerd Font "
-    "Mono:style=Bold:size=10:antialias=true:autohint=true"};
+    "Maple Mono CN"
+    ":style=Bold:size=10:antialias=true:autohint=true"};
 static const char dmenufont[] = {
-    "RecMonoLinear Nerd Font "
-    "Mono:style=Bold:size=10:antialias=true:autohint=true"};
-static const char norm_bg[] = "#141617";
+    "Maple Mono CN"
+    ":style=Bold:size=10:antialias=true:autohint=true"};
+static const char norm_bg[] = "#15161e";
 static const char norm_fg[] = "#888888";
 static const char sel_fg[] = "#000000";
-static const char accent_col[] = "#cd0245";
+static const char accent_col[] = "#bb9af7";
 static const char *colors[][3] = {
     /*               fg         bg         border   */
     [SchemeNorm] = {norm_fg, norm_bg, norm_bg},
@@ -70,16 +70,16 @@ static const Layout layouts[] = {
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY, TAG)                                                      \
-  {MODKEY, KEY, view, {.ui = 1 << TAG}},                                       \
-      {MODKEY | ControlMask, KEY, toggleview, {.ui = 1 << TAG}},               \
-      {MODKEY | ShiftMask, KEY, tag, {.ui = 1 << TAG}},                        \
-      {MODKEY | ControlMask | ShiftMask, KEY, toggletag, {.ui = 1 << TAG}},
+    {MODKEY, KEY, view, {.ui = 1 << TAG}},                                     \
+        {MODKEY | ControlMask, KEY, toggleview, {.ui = 1 << TAG}},             \
+        {MODKEY | ShiftMask, KEY, tag, {.ui = 1 << TAG}},                      \
+        {MODKEY | ControlMask | ShiftMask, KEY, toggletag, {.ui = 1 << TAG}},
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd)                                                             \
-  {                                                                            \
-    .v = (const char *[]) { "/bin/sh", "-c", cmd, NULL }                       \
-  }
+    {                                                                          \
+        .v = (const char *[]) { "/bin/sh", "-c", cmd, NULL }                   \
+    }
 
 /* commands */
 static char dmenumon[2] =
@@ -87,13 +87,18 @@ static char dmenumon[2] =
 static const char *dmenucmd[] = {
     "dmenu_run", "-m",    dmenumon, "-fn",      dmenufont, "-nb",  norm_bg,
     "-nf",       norm_fg, "-sb",    accent_col, "-sf",     sel_fg, NULL};
+/* static const char *termcmd[] = {"st", NULL}; */
 static const char *termcmd[] = {"st", NULL};
+static const char *flameshot_cmd[] = {
+    "flameshot", "gui", NULL
+};
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
     {MODKEY, XK_r, spawn,
      SHCMD("rofi -show drun -theme ~/.config/rofi/theme.rasi")},
     {MODKEY, XK_p, spawn, {.v = dmenucmd}},
+    {MODKEY, XK_o, spawn, {.v = flameshot_cmd}},
     {MODKEY, XK_Return, spawn, {.v = termcmd}},
     {MODKEY, XK_b, togglebar, {0}},
     {MODKEY, XK_j, focusstack, {.i = +1}},
