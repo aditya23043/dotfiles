@@ -4,9 +4,9 @@
     "--function-arg-placeholders=true",
     "--header-insertion=never",
     "--all-scopes-completion"
-  ],
-  "suggest.noselect": true,
+  ], "suggest.noselect": true,
   "coc.preferences.formatOnSave": false,
+  "zig.path": "/opt/homebrew/bin/zls",
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": true,
   "diagnostic.virtualTextPrefix": " ▸ ",
@@ -16,7 +16,7 @@
   "java.configuration.updateBuildConfiguration": "interactive",
   "java.signatureHelp.description.enabled": true,
   "java.codeGeneration.generateComments": true,
-  "java.saveActions.organizeImports": false,
+  "java.saveActions.organizeImports": true,
   "java.format.enabled": true,
   "java.referencesCodeLens.enabled": true,
   "java.implementationsCodeLens.enabled": true,
@@ -32,5 +32,18 @@
   "snippets.ultisnips.pythonPrompt": false,
   "tsserver.log": "verbose",
   "tsserver.trace.server": "verbose",
-  "pyls.commandPath": "/usr/bin/pylsp"
+  "lua.enable": true,
+  "Lua.codeLens.enable": true,
+  "languageserver": {
+    "typst": {
+      "command": "tinymist",
+      "filetypes": ["typst"],
+      "rootPatterns": ["main.typ", ".git"]
+    },
+    "swift": {
+        "command": "sourcekit-lsp",
+        "filetypes": ["swift"],
+        "rootPatterns": ["Package.swift", ".git", "*.xcodeproj", "*.xcworkspace"]
+    }
+  }
 }

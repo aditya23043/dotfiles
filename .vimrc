@@ -5,11 +5,17 @@ filetype plugin on
 syntax on
 set nocompatible
 
+set textwidth=100
+set formatoptions+=t
+
+set ruler
+set laststatus=2
 set showcmd
 set smarttab
 set nostartofline
 set switchbuf=uselast
 set wildmenu
+set number
 set incsearch
 set nowrap
 set linebreak
@@ -34,13 +40,11 @@ set completeopt=menuone,noinsert,noselect,preview
 set encoding=utf-8
 set nobackup
 set nowritebackup
-set noswapfile
+set swapfile
 set undodir=~/.vim/undodir
 set undofile
 set termguicolors
-set norelativenumber
-set nonumber
-set laststatus=0
+set relativenumber
 
 set guifont=Cascadia\ Code\ NF:h22:w-0.5
 
@@ -49,13 +53,52 @@ set bg=dark
 set foldmethod=marker
 set foldmarker=<<<,>>>
 
+" ================================
+" Creds Picker
+" ================================
+
+command! Creds call OpenCreds()
+
+function! OpenCreds()
+    " Create scratch buffer
+    enew
+    setlocal buftype=nofile
+    setlocal bufhidden=wipe
+    setlocal noswapfile
+    setlocal nobuflisted
+
+    " UI tweaks
+    setlocal nowrap
+    setlocal nonumber
+    setlocal norelativenumber
+    setlocal cursorline
+
+    let files = systemlist('command ls ~/creds')
+
+    call sort(files)
+
+    call setline(1, files)
+
+    setlocal nomodifiable
+
+    nnoremap <silent> <buffer> <CR> :call RunCredLine()<CR>
+    nnoremap <silent> <buffer> q :bd!<CR>
+endfunction
+
+function! RunCredLine()
+    let file = getline('.')
+    execute '!~/cred-script ' . shellescape(file)
+    bd!
+endfunction
+
+nnoremap <leader>p <cmd>Creds<CR>
+
 " autocmd InsertEnter * set norelativenumber | set conceallevel=0
 " autocmd InsertLeave * set relativenumber   | set conceallevel=2
 
-autocmd FileType c,cpp,objc,objcpp,python,js,json call rainbow#load()
-
 nnoremap <Esc> :nohl<CR>
 nnoremap <leader>e <cmd>Ex<CR>
+" nnoremap <leader>e <cmd>Dirvish<CR>
 tnoremap <leader>e <C-\><C-n>
 nnoremap <expr> <silent> k v:count == 0 ? 'gk' : 'k'
 nnoremap <expr> <silent> j v:count == 0 ? 'gj' : 'j'
@@ -71,45 +114,60 @@ nnoremap <C-k> <C-w><C-k>
 " curl -fLo .vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 call plug#begin()
-
-Plug 'https://github.com/frazrepo/vim-rainbow'
-Plug 'https://github.com/mipmip/vim-scimark'
+Plug 'whatyouhide/vim-gotham'
+Plug 'liuchengxu/space-vim-dark'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+" Plug 'justinmk/vim-dirvish'
+" Plug 'dstein64/vim-startuptime'
+Plug 'mbbill/undotree'
+" Plug 'https://github.com/Ashik80/VimExplorer'
+" Plug 'https://github.com/lervag/vimtex'
+Plug 'preservim/tagbar'
+Plug 'https://github.com/kaarmu/typst.vim'
+" Plug 'https://github.com/mipmip/vim-scimark'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'dart-lang/dart-vim-plugin'
+" Plug 'dart-lang/dart-vim-plugin'
 Plug 'tpope/vim-sleuth' " Auto detect tabstop
-Plug 'godlygeek/tabular' " Table formatting
+" Plug 'godlygeek/tabular' " Table formatting
+Plug 'dhruvasagar/vim-table-mode'
 " Plug 'preservim/vim-markdown' " Markdown
 Plug 'vimwiki/vimwiki' 
 Plug 'jiangmiao/auto-pairs' " bracket auto completion
 Plug 'tpope/vim-commentary' " gcc to toggle comment
 Plug 'tpope/vim-surround' " QOL
 " Plug 'lilydjwg/colorizer' " display hex color code
-Plug 'rrethy/vim-hexokinase'
+" Plug 'rrethy/vim-hexokinase'
 Plug 'Yggdroot/indentLine' " Indent blankline
 Plug 'cacharle/vim-syntax-extra' " Enhanced syntax highlighting
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP
 Plug 'girishji/vimsuggest'
-Plug 'voldikss/vim-floaterm'
+" Plug 'voldikss/vim-floaterm'
 
 " Colorschemes <<<
-Plug 'nikolvs/vim-sunbather'
-Plug 'widatama/vim-phoenix'
-Plug 'n1ghtmare/noirblaze-vim'
-Plug 'davidosomething/vim-colors-meh'
-Plug 'andreasvc/vim-256noir'
-Plug 'rose-pine/vim', { 'as': 'rosepine' }
+Plug 'michal-h21/vim-zettel'
+Plug 'lanx-x/NeoSolarized'
+Plug 'zenbones-theme/zenbones.nvim'
+Plug 'if-not-nil/bark'
+Plug 'adrian5/oceanic-next-vim'
+" Plug 'lunacookies/vim-colors-xcode'
+" Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
+Plug 'ayu-theme/ayu-vim'
+" Plug 'rose-pine/vim'
+" Plug 'preservim/vim-colors-pencil'
 Plug 'Everblush/everblush.vim'
 Plug 'morhetz/gruvbox'
 Plug 'metalelf0/base16-black-metal-scheme'
 Plug 'tomasiser/vim-code-dark'
 Plug 'sainnhe/gruvbox-material'
-Plug 'joshdick/onedark.vim'
-Plug 'cocopon/iceberg.vim'
-Plug 'nanotech/jellybeans.vim'
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-Plug 'wuelnerdotexe/vim-enfocado'
+" Plug 'joshdick/onedark.vim'
+" Plug 'cocopon/iceberg.vim'
+" Plug 'nanotech/jellybeans.vim'
+" Plug 'ghifarit53/tokyonight-vim'
+" Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+" Plug 'wuelnerdotexe/vim-enfocado'
 " >>>
 
 call plug#end()
@@ -216,41 +274,53 @@ nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+" nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " let g:coc_global_extensions = ['coc-clangd', 'coc-git', 'coc-tsserver', 'coc-phpls', 'coc-emmet', 'coc-flutter', 'coc-eslint', 'coc-tslint-plugin', 'coc-html']
 
 " >>>
 
+" let g:vimwiki_folding = 'expr'
+let g:markdown_fenced_languages = ['cpp', 'c']
+let g:vimwiki_listing_hl = 1
+
+let g:vimexplorer_show_hidden = 1   " show dotfiles by default (default: 0)
+let g:vimexplorer_detail      = 0   " show perms + size prefix (default: 1)
+let g:vimexplorer_show_header = 0   " show path/hint header lines (default: 1)
+
 let g:indentLine_char = '│'
-let g:indentLine_color_gui = "#2d2d2d"
+let g:indentLine_color_gui = "#3c3836"
 let g:Hexokinase_highlighters = ['backgroundfull']
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
 
+let g:typst_pdf_viewer = "Skim"
+let g:typst_folding = 1
+let g:space_vim_dark_background = 233
+
 let g:enfocado_style = 'neon' " Available: `nature` or `neon`.
-
-colo noirblaze
-" hi Normal guibg=NONE
-" hi Comment guifg=#454545
-" hi LineNr guifg=#343434
-
-colo noirblaze
-" hi Function guifg=#7daea3
-" hi String guifg=#e06c75
-" hi SpecialChar guifg=#7daea3
-" hi CocInlayHint guifg=#454545
-" hi Type guifg=#d3869b
-
+colo everblush
 " hi Folded guifg=NONE
 hi Normal guibg=NONE
-hi LineNr guifg=#2c303a
-hi Comment guifg=#373d48
-hi StatusLine guibg=NONE
-hi Pmenu guibg=#282c34
+hi link EndOfBuffer Comment
+" hi Comment guifg=#585858
+" hi SignColumn guibg=#1d2021
+" hi StatusLine guifg=#1d2021
+" hi Pmenu guibg=#333333
+" hi PmenuSel guifg=#000000
+" hi Folded guifg=#4e4a66
+" hi Comment guifg=#4e4a66
+" hi EndOfBuffer guifg=#4e4a66
+" hi LineNr guifg=#444444
 " hi EndOfBuffer guifg=#232323
 
-colo noirblaze
-hi Comment guifg=#343434
-hi Folded guibg=#232323
-hi Folded guifg=#454545
-hi Pmenu guibg=#1d1d1d
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')} 
+colo ayu
+hi Normal guibg=NONE
+colo bark
+colo gruvbox
+hi Normal guibg=NONE
+
+colo space-vim-dark
+hi Comment guifg=#3a3a3a ctermfg=59
+hi Folded guifg=#4c5360 ctermfg=59
+colo gotham256

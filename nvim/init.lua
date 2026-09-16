@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.opt.number = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.clipboard = "unnamedplus"
 vim.opt.signcolumn = "yes"
 -- vim.opt.winborder = "single"
@@ -14,6 +14,8 @@ vim.opt.incsearch = true
 vim.opt.relativenumber = true
 vim.opt.laststatus = 2
 vim.opt.cursorline = true
+vim.opt.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
+vim.opt.undofile = true
 
 vim.deprecate = function() end -- in order to prevent vim keyword warnings
 
@@ -32,7 +34,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 })
 
 vim.pack.add({
-
+	
 	{ src = "https://github.com/MunifTanjim/nui.nvim" },        
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },        
 	{ src = "https://github.com/kawre/leetcode.nvim" },
@@ -58,7 +60,7 @@ vim.pack.add({
 	{ src = "https://github.com/christoomey/vim-tmux-navigator" },
 })
 
-vim.lsp.enable({ "lua_ls", "clangd", "kotlin_lsp", "gradle_ls", "jdtls", "tinymist" })
+vim.lsp.enable({ "lua_ls", "clangd", "kotlin_lsp", "gradle_ls", "jdtls", "tinymist", "pyright" })
 
 vim.lsp.config("lua_ls", {
 	settings = {
@@ -73,8 +75,9 @@ vim.lsp.config("lua_ls", {
 vim.cmd.colorscheme "bark"
 -- vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
 vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE", fg = "#343434" })
-vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
 vim.api.nvim_set_hl(0, "Comment", { fg = "#41423d", bold = true })
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#31322d", bold = false })
 
 vim.keymap.set('n', '<leader>e', ':Oil<CR>')
 vim.keymap.set('n', '<Esc>', ':nohl<CR>')
