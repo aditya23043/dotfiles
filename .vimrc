@@ -5,6 +5,16 @@ filetype plugin on
 syntax on
 set nocompatible
 
+" gVim configs
+
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+set guioptions-=e
+
 set showcmd
 set smarttab
 set nostartofline
@@ -18,7 +28,7 @@ set tabstop=4
 set shiftwidth=4
 set clipboard=unnamedplus,unnamed,autoselect
 set breakindent
-set noexpandtab
+set expandtab
 set ignorecase
 set smartcase
 set signcolumn=yes
@@ -28,7 +38,7 @@ set splitright
 set splitbelow
 set title
 set nolist
-set nocursorline
+set cursorline
 set hlsearch
 set completeopt=menuone,noinsert,noselect,preview
 set encoding=utf-8
@@ -38,11 +48,17 @@ set noswapfile
 set undodir=~/.vim/undodir
 set undofile
 set termguicolors
-set norelativenumber
-set nonumber
+set relativenumber
+set number
 set laststatus=0
+" set foldcolumn=3
 
-set guifont=Cascadia\ Code\ NF:h22:w-0.5
+set textwidth=75
+" set colorcolumn=+0
+set formatoptions+=t
+
+" set guifont=Cascadia\ Code\ NF:h22:w-0.5
+set guifont=Maple\ Mono\ SemiBold:h30
 
 set bg=dark
 
@@ -52,61 +68,78 @@ set foldmarker=<<<,>>>
 " autocmd InsertEnter * set norelativenumber | set conceallevel=0
 " autocmd InsertLeave * set relativenumber   | set conceallevel=2
 
-autocmd FileType c,cpp,objc,objcpp,python,js,json call rainbow#load()
+" autocmd FileType c,cpp,objc,objcpp,python,js,json call rainbow#load()
 
 nnoremap <Esc> :nohl<CR>
 nnoremap <leader>e <cmd>Ex<CR>
-tnoremap <leader>e <C-\><C-n>
+" tnoremap <Esc><Esc> <C-\><C-n>
 nnoremap <expr> <silent> k v:count == 0 ? 'gk' : 'k'
 nnoremap <expr> <silent> j v:count == 0 ? 'gj' : 'j'
 
 nnoremap <leader>t <cmd>FloatermToggle<CR>
+" tnoremap <C-w>t <cmd>FloatermToggle<CR>
 
 nnoremap <C-h> <C-w><C-h>
 nnoremap <C-l> <C-w><C-l>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 
+nnoremap <C-p> <cmd>FZF<CR>
+nnoremap <C-o> <cmd>Buffers<CR>
+
 " PLUGINS <<<
 " curl -fLo .vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 call plug#begin()
 
+Plug 'iamcco/markdown-preview.nvim'
+Plug 'lervag/vimtex'
+Plug 'kaarmu/typst.vim'
+" Plug 'github/copilot.vim'
+" Plug 'preservim/nerdtree'
+Plug 'lanx-x/NeoSolarized'
+Plug 'liuchengxu/space-vim-dark'
+Plug 'mhartington/oceanic-next'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'preservim/tagbar'
 Plug 'https://github.com/frazrepo/vim-rainbow'
-Plug 'https://github.com/mipmip/vim-scimark'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'tpope/vim-sleuth' " Auto detect tabstop
+" Plug 'tpope/vim-sleuth' " Auto detect tabstop
 Plug 'godlygeek/tabular' " Table formatting
-" Plug 'preservim/vim-markdown' " Markdown
 Plug 'vimwiki/vimwiki' 
 Plug 'jiangmiao/auto-pairs' " bracket auto completion
 Plug 'tpope/vim-commentary' " gcc to toggle comment
 Plug 'tpope/vim-surround' " QOL
-" Plug 'lilydjwg/colorizer' " display hex color code
 Plug 'rrethy/vim-hexokinase'
 Plug 'Yggdroot/indentLine' " Indent blankline
 Plug 'cacharle/vim-syntax-extra' " Enhanced syntax highlighting
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP
-Plug 'girishji/vimsuggest'
+" Plug 'girishji/vimsuggest'
 Plug 'voldikss/vim-floaterm'
 
 " Colorschemes <<<
+Plug 'aditya23043/shadotheme'
+Plug 'djjcast/mirodark'
+Plug 'drsooch/gruber-darker-vim'
+Plug 'm6vrm/gruber.vim'
+Plug 'aditya23043/bark-vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'whatyouhide/vim-gotham'
+Plug 'lunacookies/vim-substrata'
 Plug 'nikolvs/vim-sunbather'
 Plug 'widatama/vim-phoenix'
 Plug 'n1ghtmare/noirblaze-vim'
 Plug 'davidosomething/vim-colors-meh'
-Plug 'andreasvc/vim-256noir'
 Plug 'rose-pine/vim', { 'as': 'rosepine' }
 Plug 'Everblush/everblush.vim'
 Plug 'morhetz/gruvbox'
-Plug 'metalelf0/base16-black-metal-scheme'
 Plug 'tomasiser/vim-code-dark'
 Plug 'sainnhe/gruvbox-material'
 Plug 'joshdick/onedark.vim'
 Plug 'cocopon/iceberg.vim'
-Plug 'nanotech/jellybeans.vim'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'wuelnerdotexe/vim-enfocado'
@@ -222,35 +255,94 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " >>>
 
+let g:typst_pdf_viewer = 'zathura'
+
 let g:indentLine_char = '│'
-let g:indentLine_color_gui = "#2d2d2d"
+let g:indentLine_color_gui = "#181818"
 let g:Hexokinase_highlighters = ['backgroundfull']
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
+let g:livepreview_previewer = 'mupdf'
+let g:vimtex_view_method = 'mupdf'
+let g:vimtex_compiler_method = 'latexmk'
+let g:vimtex_compiler_latexmk = {
+      \ 'continuous' : 1,
+      \}
 
 let g:enfocado_style = 'neon' " Available: `nature` or `neon`.
+let g:space_vim_dark_background = 233
 
-colo noirblaze
-" hi Normal guibg=NONE
-" hi Comment guifg=#454545
-" hi LineNr guifg=#343434
+let g:copilot_enabled = v:false
 
-colo noirblaze
-" hi Function guifg=#7daea3
-" hi String guifg=#e06c75
-" hi SpecialChar guifg=#7daea3
-" hi CocInlayHint guifg=#454545
-" hi Type guifg=#d3869b
 
-" hi Folded guifg=NONE
+" STATUS LINE<<<
+" set laststatus=2    " always show the statusline
+" set showmode        " show mode line ---INSERT---
+" " initialise to blank
+" set statusline=
+" " space, buffer number surrounded by [square braces]
+" set statusline+=\ [%n]
+" " space, filename (tail)
+" set statusline+=\ %t
+" " space, flags: modified, readonly, help, preview
+" set statusline+=\ %m%r%h%w
+" " right align
+" set statusline+=%=
+" " file format (line endings)
+" set statusline+=%{&ff}
+" " space, pipe, space, file encoding
+" set statusline+=\ \|\ %{''.(&fenc!=''?&fenc:&enc).''}
+" " space, pipe, space, filetype or "none"
+" set statusline+=\ \|\ %{&filetype!=#''?&filetype.'':'none'}
+" " space, pipe, space, min-2-width percent through file in lines
+" set statusline+=\ \|\ %2p%%
+" " space, pipe, space, min-3-width line number
+" set statusline+=\ \|\ %3l
+" " comma, min-2-character left-aligned virtual column number, space
+" set statusline+=:%-2v\ "
+" ------>>>
+
+colo shado
 hi Normal guibg=NONE
-hi LineNr guifg=#2c303a
-hi Comment guifg=#373d48
-hi StatusLine guibg=NONE
+hi Comment guifg=#484c54
+hi LineNr guifg=#282c34
 hi Pmenu guibg=#282c34
-" hi EndOfBuffer guifg=#232323
+hi Folded guifg=#282c34
+colo shado
+hi Pmenu guibg=#21212d
 
-colo noirblaze
-hi Comment guifg=#343434
-hi Folded guibg=#232323
-hi Folded guifg=#454545
-hi Pmenu guibg=#1d1d1d
+source ~/term.vim
+
+" Gruvbox
+" hi Normal guibg=NONE
+" hi Comment guifg=#363636
+" hi LineNr guifg=#363636
+
+" Quiet
+" hi Normal guifg=#ded7b3 guibg=#000000 guisp=NONE gui=NONE ctermfg=253 ctermbg=16 cterm=NONE term=NONE
+" hi Constant guifg=#ded7b3 guibg=NONE guisp=NONE gui=NONE ctermfg=253 ctermbg=NONE cterm=NONE term=NONE
+" hi CursorLineNr guifg=#ded7b3 guibg=#303030 guisp=NONE gui=NONE ctermfg=253 ctermbg=236 cterm=NONE term=bold
+" hi Directory guifg=#ded7b3 guibg=NONE guisp=NONE gui=NONE ctermfg=253 ctermbg=NONE cterm=NONE term=NONE
+" hi ErrorMsg guifg=#ded7b3 guibg=#000000 guisp=NONE gui=reverse ctermfg=253 ctermbg=16 cterm=reverse term=bold,reverse
+" hi Identifier guifg=#ded7b3 guibg=NONE guisp=NONE gui=NONE ctermfg=253 ctermbg=NONE cterm=NONE term=NONE
+" hi Ignore guifg=#ded7b3 guibg=NONE guisp=NONE gui=NONE ctermfg=253 ctermbg=NONE cterm=NONE term=NONE
+" hi ModeMsg guifg=#ded7b3 guibg=NONE guisp=NONE gui=bold ctermfg=253 ctermbg=NONE cterm=bold term=bold
+" hi MoreMsg guifg=#ded7b3 guibg=NONE guisp=NONE gui=NONE ctermfg=253 ctermbg=NONE cterm=NONE term=NONE
+" hi PmenuExtraSel guifg=#000000 guibg=#ded7b3 guisp=NONE gui=NONE ctermfg=16 ctermbg=253 cterm=NONE term=NONE
+" hi PmenuKindSel guifg=#000000 guibg=#ded7b3 guisp=NONE gui=bold ctermfg=16 ctermbg=253 cterm=bold term=bold
+" hi PmenuMatchSel guifg=#d7005f guibg=#ded7b3 guisp=NONE gui=bold ctermfg=161 ctermbg=253 cterm=bold term=bold
+" hi PmenuSel guifg=#000000 guibg=#ded7b3 guisp=NONE gui=NONE ctermfg=16 ctermbg=253 cterm=NONE term=bold
+" hi PmenuThumb guifg=#ded7b3 guibg=#ded7b3 guisp=NONE gui=NONE ctermfg=253 ctermbg=253 cterm=NONE term=NONE
+" hi PreProc guifg=#ded7b3 guibg=NONE guisp=NONE gui=NONE ctermfg=253 ctermbg=NONE cterm=NONE term=NONE
+" hi Question guifg=#ded7b3 guibg=NONE guisp=NONE gui=NONE ctermfg=253 ctermbg=NONE cterm=NONE term=standout
+" hi SignColumn guifg=#ded7b3 guibg=NONE guisp=NONE gui=NONE ctermfg=253 ctermbg=NONE cterm=NONE term=reverse
+" hi Special guifg=#ded7b3 guibg=NONE guisp=NONE gui=NONE ctermfg=253 ctermbg=NONE cterm=NONE term=NONE
+" hi Statement guifg=#ded7b3 guibg=NONE guisp=NONE gui=NONE ctermfg=253 ctermbg=NONE cterm=NONE term=NONE
+" hi StatusLine guifg=#000000 guibg=#ded7b3 guisp=NONE gui=bold ctermfg=16 ctermbg=253 cterm=bold term=bold,reverse
+" hi TabLineFill guifg=#ded7b3 guibg=NONE guisp=NONE gui=NONE ctermfg=253 ctermbg=NONE cterm=NONE term=NONE
+" hi TabLineSel guifg=#000000 guibg=#ded7b3 guisp=NONE gui=bold ctermfg=16 ctermbg=253 cterm=bold term=bold,reverse
+" hi TitleBar guifg=#ded7b3 guibg=#4c4c4c guisp=NONE gui=NONE ctermfg=253 ctermbg=237 cterm=NONE term=NONE
+" hi ToolbarButton guifg=#ded7b3 guibg=#000000 guisp=NONE gui=bold ctermfg=253 ctermbg=16 cterm=bold term=bold,reverse
+" hi Type guifg=#ded7b3 guibg=NONE guisp=NONE gui=NONE ctermfg=253 ctermbg=NONE cterm=NONE term=NONE
+" hi Underlined guifg=#ded7b3 guibg=NONE guisp=NONE gui=underline ctermfg=253 ctermbg=NONE cterm=underline term=underline
+" hi WarningMsg guifg=#ded7b3 guibg=NONE guisp=NONE gui=NONE ctermfg=253 ctermbg=NONE cterm=NONE term=standout
+" hi Comment guifg=#ded7b3

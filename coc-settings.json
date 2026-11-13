@@ -7,6 +7,9 @@
   ],
   "suggest.noselect": true,
   "coc.preferences.formatOnSave": false,
+  "diagnostic.warningSign": ">",
+  "diagnostic.errorSign": ">",
+  "diagnostic.hintSign": ">",
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": true,
   "diagnostic.virtualTextPrefix": " ▸ ",
@@ -32,5 +35,28 @@
   "snippets.ultisnips.pythonPrompt": false,
   "tsserver.log": "verbose",
   "tsserver.trace.server": "verbose",
-  "pyls.commandPath": "/usr/bin/pylsp"
+  "pyls.commandPath": "/usr/bin/pylsp",
+  "languageserver": {
+    "typst": {
+      "command": "tinymist",
+      "filetypes": [
+        "typst"
+      ],
+      "rootPatterns": [
+        "main.typ",
+        ".git"
+      ]
+    },
+    "svlangserver": {
+      "command": "svlangserver",
+      "filetypes": ["systemverilog", "verilog"],
+      "settings": {
+        "systemverilog.includeIndexing": ["**/*.sv", "**/*.svh", "**/*.v", "**/*.vh"],
+        "systemverilog.excludeIndexing": ["test/**/*.sv*"],
+        "systemverilog.defines": [],
+        "systemverilog.launchConfiguration": "verilator -sv -Wall --lint-only",
+        "systemverilog.formatCommand": "verible-verilog-format"
+      }
+    }
+  }
 }

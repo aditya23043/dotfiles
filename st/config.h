@@ -1,6 +1,4 @@
-static char *font =
-    /* "Maple Mono CN:style=Regular:size=19:antialias=true:autohint=true"; */
-    "Maple Mono CN:style=SemiBold:size=13:antialias=true:autohint=true";
+static char *font = "Terminess Nerd Font Mono:style=Regular:size=20:antialias=true:autohint=true";
 
 static int borderpx = 2;
 
@@ -90,7 +88,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = { "#2a2c3c", "#f7768e", "#9ece6a", "#e0af68", "#7aa2f7", "#bb9af7", "#7dcfff", "#cbd0e6", "#2a2c3c", "#f7768e", "#9ece6a", "#e0af68", "#7aa2f7", "#bb9af7", "#7dcfff", "#cbd0e6", [255] = 0, "#c0caf5", "#15161e", "#b2b2b2", "#121212" };
+static const char *colorname[] = { "#333333", "#AA0000", "#00AA00", "#AA5500", "#0000AA", "#AA00AA", "#00AAAA", "#AAAAAA", "#333333", "#AA0000", "#00AA00", "#AA5500", "#0000AA", "#AA00AA", "#00AAAA", "#AAAAAA", [255] = 0, "#AAAAAA", "#000000", "#AAAAAA", "#000000" };
 
 /*
  * foreground, background, cursor, reverse cursor
