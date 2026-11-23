@@ -1,0 +1,15 @@
+* {
+    border-radius: 0% !important;
+}
+
+.urlbarView-row[selected] .urlbarView-row-inner,
+.urlbarView-row[selected] {
+  background-color: #00AA00 !important;
+  color: #000000 !important;
+}
+
+#urlbar-input::selection {
+  background-color: #00AA00 !important;
+  color: #000000 !important;
+}
+
