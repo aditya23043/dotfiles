@@ -23,10 +23,10 @@ static const char *fonts[] = {
 static const char dmenufont[] = {
     "Maple Mono CN"
     ":style=Bold:size=10:antialias=true:autohint=true"};
-static const char norm_bg[] = "#15161e";
-static const char norm_fg[] = "#888888";
+static const char norm_bg[] = "#111119";
+static const char norm_fg[] = "#dfb7e8";
 static const char sel_fg[] = "#000000";
-static const char accent_col[] = "#bb9af7";
+static const char accent_col[] = "#ff7ab2";
 static const char *colors[][3] = {
     /*               fg         bg         border   */
     [SchemeNorm] = {norm_fg, norm_bg, norm_bg},
@@ -89,16 +89,13 @@ static const char *dmenucmd[] = {
     "-nf",       norm_fg, "-sb",    accent_col, "-sf",     sel_fg, NULL};
 /* static const char *termcmd[] = {"st", NULL}; */
 static const char *termcmd[] = {"st", NULL};
-static const char *flameshot_cmd[] = {
-    "flameshot", "gui", NULL
-};
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
-    {MODKEY, XK_r, spawn,
-     SHCMD("rofi -show drun -theme ~/.config/rofi/theme.rasi")},
+    {MODKEY, XK_w, spawn, SHCMD("~/.config/dwm/scripts/browse.sh")},
+    {MODKEY, XK_r, spawn, SHCMD("rofi -show drun -theme ~/.config/rofi/theme.rasi")},
     {MODKEY, XK_p, spawn, {.v = dmenucmd}},
-    {MODKEY, XK_o, spawn, {.v = flameshot_cmd}},
+    {MODKEY, XK_o, spawn, SHCMD("maim --select | xclip -sel c -target image/png")},
     {MODKEY, XK_Return, spawn, {.v = termcmd}},
     {MODKEY, XK_b, togglebar, {0}},
     {MODKEY, XK_j, focusstack, {.i = +1}},

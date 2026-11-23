@@ -1,6 +1,4 @@
-static char *font =
-    /* "Maple Mono CN:style=Regular:size=19:antialias=true:autohint=true"; */
-    "Maple Mono CN:style=SemiBold:size=13:antialias=true:autohint=true";
+static char *font = "Maple Mono CN:style=SemiBold:size=15:antialias=true:autohint=true";
 
 static int borderpx = 2;
 
@@ -90,7 +88,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = { "#2a2c3c", "#f7768e", "#9ece6a", "#e0af68", "#7aa2f7", "#bb9af7", "#7dcfff", "#cbd0e6", "#2a2c3c", "#f7768e", "#9ece6a", "#e0af68", "#7aa2f7", "#bb9af7", "#7dcfff", "#cbd0e6", [255] = 0, "#c0caf5", "#15161e", "#b2b2b2", "#121212" };
+static const char *colorname[] = { "#22222a", "#B52A5B", "#FF4971", "#8897F4", "#bd93f9", "#E9729D", "#F18FB0", "#f1c4e0", "#22222a", "#B52A5B", "#FF4971", "#8897F4", "#bd93f9", "#E9729D", "#F18FB0", "#f1c4e0", [255] = 0, "#dfb7e8", "#111119", "#dfb7e8", "#111119" };
 
 /*
  * foreground, background, cursor, reverse cursor

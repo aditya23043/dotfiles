@@ -6,6 +6,9 @@ const unsigned int interval = 60000;
 /* text to show if no value can be retrieved */
 static const char unknown_str[] = "n/a";
 
+#define SEP0 |
+#define SEP1 ┃
+
 /* maximum output string length */
 #define MAXLEN 2048
 
@@ -75,7 +78,9 @@ static const struct arg args[] = {
     {ram_used, "RAM: %s ", NULL},
     {ram_perc, "(%s%%) | ", NULL},
     {cpu_perc, "CPU: %s%% | ", NULL},
-    {ipv4, "WIFI: %s | ", "wlp3s0"},
+    {wifi_essid, "WIFI: %s ", "wlp3s0"},
+    {wifi_perc, "(%s%%) | ", "wlp3s0"},
+    {ipv4, "IP: %s | ", "wlp3s0"},
     {disk_perc, "ROOT: %s%% | ", "/"},
     {uptime, "UP: %s | ", NULL},
     {datetime, "%s ", "%I:%M %p | %b %d, %Y"},
